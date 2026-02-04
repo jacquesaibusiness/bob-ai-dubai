@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Haysal Real Estate — The Hybrid Agency Model 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #D4A843;
+    --gold-light: #E8C96A;
+    --dark: #0A0E1A;
+    --dark-card: #0F1525;
+    --dark-border: #1A2744;
+    --text: #E8ECF4;
+    --text-muted: #7E8BA8;
+    --green: #4ECB71;
+    --red: #E84855;
+    --blue: #2E5FBA;
+    --royal: #1B3A8C;
+    --royal-light: #2E5FBA;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--dark);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .container { max-width: 900px; margin: 0 auto; padding: 40px 24px; }
+
+  /* Header */
+  .header { text-align: center; padding: 60px 0 50px; border-bottom: 1px solid var(--dark-border); margin-bottom: 50px; }
+  .header .badge { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold); padding: 6px 18px; border-radius: 20px; margin-bottom: 24px; }
+  .header h1 { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 600; line-height: 1.15; margin-bottom: 16px; background: linear-gradient(135deg, var(--gold) 0%, #6B9FFF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .header p { font-size: 16px; color: var(--text-muted); max-width: 600px; margin: 0 auto; }
+
+  /* Section */
+  .section { margin-bottom: 48px; }
+  .section-num { font-size: 12px; font-weight: 600; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; margin-bottom: 8px; }
+  .section h2 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 500; margin-bottom: 20px; }
+  .section h3 { font-size: 16px; font-weight: 600; color: var(--gold-light); margin: 24px 0 12px; }
+  .section p, .section li { font-size: 15px; color: var(--text-muted); line-height: 1.7; }
+  .section ul { list-style: none; padding: 0; }
+  .section ul li { padding: 6px 0 6px 20px; position: relative; }
+  .section ul li::before { content: '→'; position: absolute; left: 0; color: var(--gold); font-weight: 600; }
+
+  /* Cards */
+  .card { background: var(--dark-card); border: 1px solid var(--dark-border); border-radius: 12px; padding: 28px; margin: 16px 0; }
+  .card.highlight { border-color: var(--gold); background: linear-gradient(135deg, rgba(27,58,140,0.15), rgba(212,168,67,0.05)); }
+
+  /* Team Grid */
+  .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+  .team-card { background: var(--dark-card); border: 1px solid var(--dark-border); border-radius: 10px; padding: 20px; }
+  .team-card .role { font-size: 13px; font-weight: 600; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .team-card .title { font-family: 'Playfair Display', serif; font-size: 17px; margin-bottom: 6px; }
+  .team-card .desc { font-size: 13px; color: var(--text-muted); }
+
+  /* Tables */
+  .commission-table, .budget-table, .mock-table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 16px 0; font-size: 14px; }
+  .commission-table thead th, .budget-table thead th, .mock-table thead th { text-align: left; padding: 14px 16px; font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); border-bottom: 1px solid var(--dark-border); background: var(--dark-card); }
+  .commission-table thead th:first-child, .budget-table thead th:first-child, .mock-table thead th:first-child { border-radius: 10px 0 0 0; }
+  .commission-table thead th:last-child, .budget-table thead th:last-child, .mock-table thead th:last-child { border-radius: 0 10px 0 0; }
+  .commission-table tbody td, .budget-table tbody td, .mock-table tbody td { padding: 14px 16px; border-bottom: 1px solid var(--dark-border); color: var(--text-muted); background: var(--dark-card); }
+  .commission-table tbody tr:last-child td:first-child, .budget-table tbody tr:last-child td:first-child, .mock-table tbody tr:last-child td:first-child { border-radius: 0 0 0 10px; }
+  .commission-table tbody tr:last-child td:last-child, .budget-table tbody tr:last-child td:last-child, .mock-table tbody tr:last-child td:last-child { border-radius: 0 0 10px 0; }
+  .commission-table tbody tr:hover td, .mock-table tbody tr:hover td { background: rgba(27,58,140,0.1); }
+  .commission-table .split { font-weight: 700; color: var(--text); font-size: 16px; }
+  .commission-table .current-slab td { background: rgba(27,58,140,0.15); color: var(--text); }
+  .budget-table .amount, .mock-table .amount { text-align: right; font-weight: 500; color: var(--text); font-variant-numeric: tabular-nums; }
+  .budget-table .note { font-size: 12px; color: var(--text-muted); }
+  .budget-table .total-row td, .mock-table .total-row td { font-weight: 700; color: var(--gold); border-top: 2px solid var(--gold); font-size: 15px; }
+  .mock-table .subtotal-row td { font-weight: 600; color: var(--text); border-top: 1px solid var(--gold); background: rgba(27,58,140,0.08); }
+  .mock-table .profit-row td { font-weight: 700; color: var(--green); border-top: 2px solid var(--green); font-size: 15px; background: rgba(78,203,113,0.05); }
+
+  /* Slab visual */
+  .slab-visual { display: flex; gap: 6px; margin: 24px 0; height: 56px; border-radius: 10px; overflow: hidden; }
+  .slab-bar { display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--dark); font-weight: 700; font-size: 15px; border-radius: 8px; }
+  .slab-bar .slab-label { font-size: 9px; font-weight: 600; letter-spacing: 1px; opacity: 0.8; text-transform: uppercase; }
+  .slab-bar.s1 { flex: 1; background: linear-gradient(135deg, #1B3A8C, #2E5FBA); color: #E8C96A; }
+  .slab-bar.s2 { flex: 1; background: linear-gradient(135deg, #2E5FBA, #D4A843); color: #0A0E1A; }
+  .slab-bar.s3 { flex: 1; background: linear-gradient(135deg, #D4A843, #E8C96A); color: #0A0E1A; }
+
+  /* KPI */
+  .kpi-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
+  .kpi { background: var(--dark-card); border: 1px solid var(--dark-border); border-radius: 10px; padding: 20px; text-align: center; }
+  .kpi .value { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 600; color: var(--gold); }
+  .kpi .label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+  /* Workflow */
+  .workflow { position: relative; margin: 20px 0; padding-left: 32px; }
+  .workflow::before { content: ''; position: absolute; left: 11px; top: 0; bottom: 0; width: 2px; background: var(--dark-border); }
+  .workflow-step { position: relative; margin-bottom: 20px; padding: 16px 20px; background: var(--dark-card); border: 1px solid var(--dark-border); border-radius: 10px; }
+  .workflow-step::before { content: ''; position: absolute; left: -27px; top: 22px; width: 12px; height: 12px; border-radius: 50%; background: linear-gradient(135deg, var(--royal-light), var(--gold)); border: 3px solid var(--dark); }
+  .workflow-step .step-num { font-size: 11px; font-weight: 700; color: var(--gold); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+  .workflow-step .step-title { font-weight: 600; font-size: 15px; margin-bottom: 6px; }
+  .workflow-step .step-desc { font-size: 13px; color: var(--text-muted); }
+
+  /* Checklist */
+  .checklist { list-style: none; padding: 0; margin: 16px 0; }
+  .checklist li { display: flex; align-items: flex-start; gap: 12px; padding: 12px 16px; background: var(--dark-card); border: 1px solid var(--dark-border); border-radius: 10px; margin-bottom: 8px; font-size: 14px; color: var(--text-muted); }
+  .checklist li .check { width: 20px; height: 20px; border: 2px solid var(--dark-border); border-radius: 4px; flex-shrink: 0; margin-top: 1px; }
+  .checklist li .owner { font-size: 11px; font-weight: 600; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 2px; }
+
+  /* Content Grid */
+  .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+  .content-item { background: var(--dark-card); border: 1px solid var(--dark-border); border-radius: 10px; padding: 16px; }
+  .content-item .count { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 600; color: var(--gold); }
+  .content-item .type { font-size: 14px; font-weight: 600; margin: 4px 0; }
+  .content-item .example { font-size: 12px; color: var(--text-muted); font-style: italic; }
+
+  /* Agent performance cards */
+  .agent-perf { background: var(--dark-card); border: 1px solid var(--dark-border); border-radius: 12px; padding: 24px; margin: 12px 0; }
+  .agent-perf .agent-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+  .agent-perf .agent-name { font-family: 'Playfair Display', serif; font-size: 18px; }
+  .agent-perf .agent-slab { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; }
+  .agent-perf .agent-slab.bronze { color: var(--royal-light); border: 1px solid var(--royal-light); }
+  .agent-perf .agent-slab.silver { color: var(--gold); border: 1px solid var(--gold); }
+  .agent-perf .deal-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--dark-border); font-size: 13px; color: var(--text-muted); }
+  .agent-perf .deal-row:last-of-type { border-bottom: none; }
+  .agent-perf .deal-type { font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; margin-right: 8px; }
+  .agent-perf .deal-type.offplan { color: var(--gold); background: rgba(212,168,67,0.15); }
+  .agent-perf .deal-type.secondary { color: #6B9FFF; background: rgba(46,95,186,0.15); }
+  .agent-perf .agent-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--dark-border); text-align: center; }
+  .agent-perf .agent-summary .stat-value { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 600; }
+  .agent-perf .agent-summary .stat-label { font-size: 11px; color: var(--text-muted); }
+
+  .divider { height: 1px; background: var(--dark-border); margin: 48px 0; }
+
+  /* Print */
+  @media print {
+    body { background: var(--dark) !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    .container { padding: 20px 32px; }
+    .header { padding: 40px 0 30px; margin-bottom: 30px; page-break-after: always; }
+    .section { margin-bottom: 24px; }
+    .divider { margin: 24px 0; }
+    
+    /* Never break inside these */
+    .card, .team-card, .kpi, .agent-perf, .workflow-step, .content-item, .checklist li { page-break-inside: avoid !important; break-inside: avoid !important; }
+    .commission-table, .budget-table, .mock-table { page-break-inside: avoid !important; break-inside: avoid !important; }
+    .team-grid, .kpi-row, .slab-visual, .content-grid { page-break-inside: avoid !important; break-inside: avoid !important; }
+    .break-even { page-break-inside: avoid !important; break-inside: avoid !important; }
+    
+    /* Keep headings with content */
+    h2, h3 { page-break-after: avoid !important; break-after: avoid !important; }
+    .section-num { page-break-after: avoid !important; break-after: avoid !important; }
+    
+    /* Force page breaks between major sections */
+    .page-break { page-break-before: always !important; break-before: always !important; }
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .header h1 { font-size: 28px; }
+    .team-grid, .kpi-row, .content-grid { grid-template-columns: 1fr; }
+    .slab-visual { flex-direction: column; height: auto; }
+    .slab-bar { padding: 12px; }
+    .agent-perf .agent-summary { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="badge">Confidential — Internal Strategy</div>
+    <h1>The Hybrid Agency Model</h1>
+    <p>Dubai's first "Agent-Developer" ecosystem. Not a brokerage — an investment firm with a sales arm.</p>
+  </div>
+
+  <!-- I. EXECUTIVE SUMMARY -->
+  <div class="section">
+    <div class="section-num">Section I</div>
+    <h2>Executive Summary</h2>
+    <div class="card highlight">
+      <p style="color: var(--text); font-size: 16px; font-style: italic; font-family: 'Playfair Display', serif;">
+        "We are not a traditional brokerage. We are an investment firm with a sales arm."
+      </p>
+    </div>
+    <div class="kpi-row" style="margin-top: 20px;">
+      <div class="kpi">
+        <div class="value" style="font-size: 17px;">Golden Desert</div>
+        <div class="label">Holding company & investment arm</div>
+      </div>
+      <div class="kpi">
+        <div class="value" style="font-size: 17px;">Desert Build</div>
+        <div class="label">Developer, construction, renovations, land & distress acquisitions</div>
+      </div>
+      <div class="kpi">
+        <div class="value" style="font-size: 17px;">Haysal</div>
+        <div class="label">RE transaction arm — all property deals flow through here, commissions on all sales</div>
+      </div>
+    </div>
+    <p style="margin-top: 16px;">Every transaction — normal sales, distress acquisitions, post-upgrade exits, new developments — flows through Haysal. Commissions are earned on every deal across all three entities.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- II. TEAM — page break -->
+  <div class="page-break"></div>
+  <div class="section">
+    <div class="section-num">Section II</div>
+    <h2>The Team & "The Unbeatable Offer"</h2>
+
+    <h3>4-Person Core Structure</h3>
+    <div class="team-grid">
+      <div class="team-card" style="grid-column: 1 / -1;">
+        <div class="role">Leadership</div>
+        <div class="title">Head of Real Estate</div>
+        <div class="desc">Developer partnerships, Trakheesi, CRM, marketing & media coordination, listing quality, agent team management, operations</div>
+      </div>
+      <div class="team-card">
+        <div class="role">Off-Plan Lead</div>
+        <div class="title">Head of Off-Plan</div>
+        <div class="desc">Off-plan sales leadership & developer relationships</div>
+      </div>
+      <div class="team-card">
+        <div class="role">Secondary Lead</div>
+        <div class="title">Head of Secondary</div>
+        <div class="desc">Secondary market sales & sourcing distress deals for company acquisition</div>
+      </div>
+      <div class="team-card" style="grid-column: 1 / -1;">
+        <div class="role">Sales</div>
+        <div class="title">Senior Off-Plan Executive</div>
+        <div class="desc">Off-plan sales execution & client acquisition</div>
+      </div>
+    </div>
+
+    <h3>Progressive Commission Slabs</h3>
+    <p style="margin-bottom: 12px;">Performance-tiered splits based on quarterly Gross Transaction Value. Beats market standard (50/50) at every level.</p>
+
+    <div class="slab-visual">
+      <div class="slab-bar s1" style="flex: 3;">
+        <span>60/40</span>
+        <span class="slab-label">Bronze · 0–3M</span>
+      </div>
+      <div class="slab-bar s2" style="flex: 4;">
+        <span>65/35</span>
+        <span class="slab-label">Silver · 3M–10M</span>
+      </div>
+      <div class="slab-bar s3" style="flex: 3;">
+        <span>70/30</span>
+        <span class="slab-label">Gold · 10M+</span>
+      </div>
+    </div>
+
+    <table class="commission-table">
+      <thead>
+        <tr>
+          <th>Slab</th>
+          <th>Quarterly GTV</th>
+          <th>Agent Split</th>
+          <th>Company Split</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="current-slab">
+          <td><strong>🥉 Bronze</strong></td>
+          <td>AED 0 – 3M</td>
+          <td class="split">60%</td>
+          <td>40%</td>
+        </tr>
+        <tr>
+          <td><strong>🥈 Silver</strong></td>
+          <td>AED 3M – 10M</td>
+          <td class="split">65%</td>
+          <td>35%</td>
+        </tr>
+        <tr>
+          <td><strong>🥇 Gold</strong></td>
+          <td>AED 10M+</td>
+          <td class="split">70%</td>
+          <td>30%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="page-break"></div>
+    <div class="card highlight" style="margin-top: 16px;">
+      <h3 style="margin-top: 0;">🔑 The "Kicker" — Flip Profit Share</h3>
+      <p style="font-size: 15px; color: var(--text);">If an agent sources a distress deal the company buys and flips, they earn <strong>10% of the net flip profit</strong> — on top of their commission on the exit sale.</p>
+      <p style="font-size: 13px; color: var(--text-muted); margin-top: 8px;">
+        <strong>Example:</strong> Agent finds a below-market villa → Company buys at AED 3M, Desert Build renovates for AED 500K, sells at AED 5.5M → Net profit AED 2M → Agent gets AED 200K kicker + exit commission via Haysal.
+      </p>
+    </div>
+
+    <h3>Base Compensation</h3>
+    <table class="commission-table">
+      <thead>
+        <tr>
+          <th>Component</th>
+          <th>Details</th>
+          <th>Why It Works</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Basic Salary</strong></td>
+          <td>AED 3,000 – 4,000/mo</td>
+          <td>Covers transport/visa. Filters out zero-ambition hires.</td>
+        </tr>
+        <tr>
+          <td><strong>Commission</strong></td>
+          <td>60% → 65% → 70% progressive</td>
+          <td>Beats market standard (50/50) at every tier.</td>
+        </tr>
+        <tr>
+          <td><strong>Flip Kicker</strong></td>
+          <td>10% of net profit</td>
+          <td>Turns agents into deal-finders, not just salespeople.</td>
+        </tr>
+        <tr>
+          <td><strong>Profit Share</strong></td>
+          <td>5-10% quarterly pool</td>
+          <td>Creates ownership mentality across all company revenue.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- III. COMPLIANCE -->
+  <div class="section">
+    <div class="section-num">Section III</div>
+    <h2>Compliance Roadmap — Next 14 Days</h2>
+
+    <div class="workflow">
+      <div class="workflow-step">
+        <div class="step-num">Days 1–3</div>
+        <div class="step-title">RERA Broker Cards</div>
+        <div class="step-desc">Book RERA exam (DREI) for all agents. Cost: ~AED 1,500/agent (exam + good conduct cert + card issuance).</div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">Days 3–5</div>
+        <div class="step-title">Trakheesi Registration</div>
+        <div class="step-desc">Register company using ORN. Free — upload title deed/Ejari of new office.</div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">Days 5–10</div>
+        <div class="step-title">WhatsApp Business API</div>
+        <div class="step-desc">Submit trade license to Meta for verified Business API account. Sign up for WATI or Interakt. Essential for 100/day outreach.</div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">Days 10–14</div>
+        <div class="step-title">Aggregator Agreements</div>
+        <div class="step-desc">Meeting with Tanamy or Expat Real Estate to sign aggregator agreement. Gives instant access to developer inventory while building track record.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- IV. INVENTORY — page break -->
+  <div class="page-break"></div>
+  <div class="section">
+    <div class="section-num">Section IV</div>
+    <h2>Sales Inventory Strategy</h2>
+    <p style="margin-bottom: 16px;">Solving the "no track record" problem for months 1-6.</p>
+
+    <div class="card">
+      <h3 style="margin-top: 0;">The "Aggregator" Bridge — Off-Plan</h3>
+      <ul>
+        <li>Sign with Master Aggregators (Tanamy, Expat RE, homes)</li>
+        <li>Full access to their inventory + marketing collateral</li>
+        <li>Developer pays 5% commission — aggregator takes 1%, Haysal nets 4%</li>
+        <li>Use for Months 1-6 until AED 20M sales volume unlocks direct contracts</li>
+        <li>Tier 2 developers (Binghatti, Danube, Azizi) will also sign new agencies directly — aggressive and eager for more sales channels</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top: 0;">Secondary Market — 2% Commission</h3>
+      <ul>
+        <li>100/day owner outreach to find below-market-price opportunities</li>
+        <li>Standard 2% commission on secondary sales — no aggregator cut</li>
+        <li>Distress deals sourced by Head of Secondary feed Desert Build for upgrades</li>
+        <li>Desert Build handles renovation → Haysal handles exit sale → full value chain captured</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- V. OUTREACH ENGINE — page break -->
+  <div class="page-break"></div>
+  <div class="section">
+    <div class="section-num">Section V</div>
+    <h2>The "100/Day" Outreach Engine</h2>
+    <p style="margin-bottom: 8px;">Compliance-first approach: strictly adhere to DNCL (Do Not Call Registry). Never cold-call a personal mobile first.</p>
+
+    <div class="workflow">
+      <div class="workflow-step">
+        <div class="step-num">Step 1</div>
+        <div class="step-title">Data Cleaning</div>
+        <div class="step-desc">Verify numbers are active from Dubai ownership database. Segment by community, property age, and upgrade potential.</div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">Step 2</div>
+        <div class="step-title">"Soft" SMS — AED 0.08/msg</div>
+        <div class="step-desc">"Hi [Name], I have a cash client looking to renovate a unit in [Building]. Are you open to discussing a sale? — [Agent], Haysal RE"</div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">Step 3</div>
+        <div class="step-title">Inbound Filter</div>
+        <div class="step-desc">Only call/WhatsApp if they REPLY. Non-responders go into Meta Retargeting Audience (Custom Audience from phone numbers).</div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">Step 4</div>
+        <div class="step-title">WhatsApp Business API</div>
+        <div class="step-desc">WATI or Interakt — multiple agents on one number. Automated PDFs/brochures on reply. Full CRM integration.</div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">Step 5</div>
+        <div class="step-title">Meta Retargeting</div>
+        <div class="step-desc">Non-responders from SMS get served targeted Meta ads (Facebook/Instagram) using phone number Custom Audiences. Turns cold leads warm through repeated brand exposure.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- VI. CONTENT — page break -->
+  <div class="page-break"></div>
+  <div class="section">
+    <div class="section-num">Section VI</div>
+    <h2>Brand & Content — "The Prestige Launch"</h2>
+    <p style="margin-bottom: 16px;">Look like a 10-year-old company on Day 1. Freelance videographer, 1-2 days/month (AED 2,000-3,000).</p>
+
+    <h3>One-Day Shot List</h3>
+    <div class="content-grid">
+      <div class="content-item">
+        <div class="count">10x</div>
+        <div class="type">Educational Reels</div>
+        <div class="example">"How we calculate Flip ROI" • Agent speaking to camera</div>
+      </div>
+      <div class="content-item">
+        <div class="count">20x</div>
+        <div class="type">B-Roll Clips</div>
+        <div class="example">Blueprints, construction sites, signing papers</div>
+      </div>
+      <div class="content-item">
+        <div class="count">5x</div>
+        <div class="type">Project Spotlights</div>
+        <div class="example">Site visits to off-plan launches</div>
+      </div>
+      <div class="content-item">
+        <div class="count">Daily</div>
+        <div class="type">Scheduled Posts</div>
+        <div class="example">Admin uploads — no agency needed</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- VII. FINANCIALS — page break -->
+  <div class="page-break"></div>
+  <div class="section">
+    <div class="section-num">Section VII</div>
+    <h2>Financials — Running Budget & Mock Quarter</h2>
+    <p style="margin-bottom: 16px;">Excluding office/trade license sunk costs.</p>
+
+    <table class="budget-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th class="amount">Monthly Cost (AED)</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Staff Salaries</td>
+          <td class="amount">10,500</td>
+          <td class="note">Basic for 3 Agents (AED 3,500 each)</td>
+        </tr>
+        <tr>
+          <td>Marketing (Ads)</td>
+          <td class="amount">8,000 – 10,000</td>
+          <td class="note">Meta/Google Ads + SMS Credits</td>
+        </tr>
+        <tr>
+          <td>Portals (PropSpace)</td>
+          <td class="amount">2,200</td>
+          <td class="note">CRM & Listing Management</td>
+        </tr>
+        <tr>
+          <td>Social Content</td>
+          <td class="amount">2,000</td>
+          <td class="note">Freelance Videographer (1 day/mo)</td>
+        </tr>
+        <tr>
+          <td>Software Stack</td>
+          <td class="amount">500</td>
+          <td class="note">WhatsApp API (WATI) + Hosting</td>
+        </tr>
+        <tr>
+          <td>Trakheesi Permits</td>
+          <td class="amount">2,000</td>
+          <td class="note">Avg 2 new permits/month</td>
+        </tr>
+        <tr class="total-row">
+          <td>TOTAL RUNNING COST</td>
+          <td class="amount">~25,200 – 27,200</td>
+          <td class="note">Per Month (~AED 78,600/quarter)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Break-Even Overview</h3>
+    <div class="card">
+      <p style="color: var(--text); margin-bottom: 12px;"><strong>Quarterly operating cost: ~AED 78,600</strong></p>
+      <p style="margin-bottom: 8px;">To break even, Haysal needs AED 78,600 in retained commission (company's share after agent splits).</p>
+      <ul>
+        <li><strong>Off-Plan only (Bronze slab):</strong> ~AED 5M in GTV → AED 200K gross comm (at 4%) → AED 80K to Haysal (at 40%)</li>
+        <li><strong>Secondary only (Bronze slab):</strong> ~AED 10M in GTV → AED 200K gross comm (at 2%) → AED 80K to Haysal (at 40%)</li>
+        <li><strong>Blended:</strong> As few as 2-3 off-plan deals + 2-3 secondary deals per quarter</li>
+      </ul>
+    </div>
+
+    <div class="page-break"></div>
+    <h3 style="margin-top: 12px;">📊 Mock Quarter — Realistic Sales Exercise</h3>
+    <p style="margin-bottom: 8px;">Assumptions: Off-plan 5% developer commission, aggregator takes 1% → Haysal nets 4%. Secondary 2% commission, no aggregator.</p>
+
+    <!-- AGENT 1 -->
+    <div class="agent-perf">
+      <div class="agent-header">
+        <div class="agent-name">Agent 1 — Head of Off-Plan</div>
+        <div class="agent-slab silver">🥈 Silver · 65/35</div>
+      </div>
+      <div class="deal-row">
+        <div><span class="deal-type offplan">Off-Plan</span> Palma Serenia — 2BR Apartment</div>
+        <div style="color: var(--text);">AED 2,500,000</div>
+      </div>
+      <div class="deal-row">
+        <div><span class="deal-type offplan">Off-Plan</span> Ellington (via aggregator) — 1BR</div>
+        <div style="color: var(--text);">AED 1,800,000</div>
+      </div>
+      <div class="deal-row">
+        <div><span class="deal-type offplan">Off-Plan</span> Palma Serenia — 3BR Apartment</div>
+        <div style="color: var(--text);">AED 3,200,000</div>
+      </div>
+      <div class="agent-summary">
+        <div>
+          <div class="stat-value">AED 7.5M</div>
+          <div class="stat-label">Quarterly GTV</div>
+        </div>
+        <div>
+          <div class="stat-value" style="color: var(--blue);">AED 300K</div>
+          <div class="stat-label">Gross Commission (4%)</div>
+        </div>
+        <div>
+          <div class="stat-value" style="color: var(--green);">AED 195K</div>
+          <div class="stat-label">Agent Payout (65%)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AGENT 2 -->
+    <div class="agent-perf">
+      <div class="agent-header">
+        <div class="agent-name">Agent 2 — Head of Secondary</div>
+        <div class="agent-slab silver">🥈 Silver · 65/35</div>
+      </div>
+      <div class="deal-row">
+        <div><span class="deal-type secondary">Secondary</span> Business Bay — 1BR Resale</div>
+        <div style="color: var(--text);">AED 1,400,000</div>
+      </div>
+      <div class="deal-row">
+        <div><span class="deal-type secondary">Secondary</span> JVC — 3BR Villa</div>
+        <div style="color: var(--text);">AED 2,100,000</div>
+      </div>
+      <div class="deal-row">
+        <div><span class="deal-type secondary">Secondary</span> Dubai Hills — 2BR Apartment</div>
+        <div style="color: var(--text);">AED 1,800,000</div>
+      </div>
+      <div class="agent-summary">
+        <div>
+          <div class="stat-value">AED 5.3M</div>
+          <div class="stat-label">Quarterly GTV</div>
+        </div>
+        <div>
+          <div class="stat-value" style="color: var(--blue);">AED 106K</div>
+          <div class="stat-label">Gross Commission (2%)</div>
+        </div>
+        <div>
+          <div class="stat-value" style="color: var(--green);">AED 68.9K</div>
+          <div class="stat-label">Agent Payout (65%)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AGENT 3 -->
+    <div class="agent-perf">
+      <div class="agent-header">
+        <div class="agent-name">Agent 3 — Senior Off-Plan Executive</div>
+        <div class="agent-slab bronze">🥉 Bronze · 60/40</div>
+      </div>
+      <div class="deal-row">
+        <div><span class="deal-type offplan">Off-Plan</span> Palma Serenia — 1BR Apartment</div>
+        <div style="color: var(--text);">AED 1,500,000</div>
+      </div>
+      <div class="deal-row">
+        <div><span class="deal-type offplan">Off-Plan</span> Binghatti (direct) — Studio</div>
+        <div style="color: var(--text);">AED 1,200,000</div>
+      </div>
+      <div class="agent-summary">
+        <div>
+          <div class="stat-value">AED 2.7M</div>
+          <div class="stat-label">Quarterly GTV</div>
+        </div>
+        <div>
+          <div class="stat-value" style="color: var(--blue);">AED 108K</div>
+          <div class="stat-label">Gross Commission (4%)</div>
+        </div>
+        <div>
+          <div class="stat-value" style="color: var(--green);">AED 64.8K</div>
+          <div class="stat-label">Agent Payout (60%)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUARTER SUMMARY — page break -->
+    <div class="page-break"></div>
+    <h3 style="margin-top: 28px;">Quarter P&L Summary</h3>
+    <table class="mock-table">
+      <thead>
+        <tr>
+          <th>Line Item</th>
+          <th class="amount">Amount (AED)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Total GTV (8 deals)</td>
+          <td class="amount">14,500,000</td>
+        </tr>
+        <tr>
+          <td>Gross Commission Earned</td>
+          <td class="amount">514,000</td>
+        </tr>
+        <tr class="subtotal-row">
+          <td>Agent Payouts (all 3 agents)</td>
+          <td class="amount" style="color: var(--red);">– 328,700</td>
+        </tr>
+        <tr>
+          <td><strong>Haysal Gross Margin</strong></td>
+          <td class="amount" style="font-weight: 700;">185,300</td>
+        </tr>
+        <tr class="subtotal-row">
+          <td>Quarterly Operating Costs</td>
+          <td class="amount" style="color: var(--red);">– 78,600</td>
+        </tr>
+        <tr class="profit-row">
+          <td>NET PROFIT (Quarter)</td>
+          <td class="amount">106,700</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="kpi-row" style="margin-top: 20px;">
+      <div class="kpi">
+        <div class="value">8</div>
+        <div class="label">Deals Closed</div>
+      </div>
+      <div class="kpi">
+        <div class="value" style="color: var(--green);">AED 107K</div>
+        <div class="label">Net Quarterly Profit</div>
+      </div>
+      <div class="kpi">
+        <div class="value">36%</div>
+        <div class="label">Gross Margin on Commission</div>
+      </div>
+    </div>
+
+    <p style="margin-top: 16px; font-size: 13px;"><em>Note: This excludes distress deal kicker profits and Desert Build renovation revenue — those are upside on top of this baseline.</em></p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- VIII. ACTION PLAN — page break -->
+  <div class="page-break"></div>
+  <div class="section">
+    <div class="section-num">Section VIII</div>
+    <h2>Immediate Action Plan</h2>
+
+    <ul class="checklist">
+      <li>
+        <div class="check"></div>
+        <div>
+          <span class="owner">Management</span>
+          Approve the progressive commission model (Bronze 60% → Silver 65% → Gold 70%) + 10% flip profit kicker
+        </div>
+      </li>
+      <li>
+        <div class="check"></div>
+        <div>
+          <span class="owner">Head of RE</span>
+          Book RERA exams for all staff — tomorrow
+        </div>
+      </li>
+      <li>
+        <div class="check"></div>
+        <div>
+          <span class="owner">Head of RE</span>
+          Sign up for WATI or Interakt (WhatsApp Business API)
+        </div>
+      </li>
+      <li>
+        <div class="check"></div>
+        <div>
+          <span class="owner">Founders</span>
+          Schedule meeting with Tanamy or Expat Real Estate → sign Aggregator agreement
+        </div>
+      </li>
+      <li>
+        <div class="check"></div>
+        <div>
+          <span class="owner">Head of RE</span>
+          Hire freelancer for "Day 1" content shoot (office launch video + team intros)
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div style="text-align: center; padding: 40px 0 20px; border-top: 1px solid var(--dark-border); margin-top: 40px;">
+    <p style="font-size: 12px; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase;">Haysal Real Estate × Golden Desert Group — 2026</p>
+  </div>
+
+</div>
+</body>
+</html>
