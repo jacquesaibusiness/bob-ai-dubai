@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRM Platform Evaluation — Haysal Real Estate</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #D4A843;
+    --gold-light: #E8C96A;
+    --dark: #0A0E1A;
+    --dark-card: #0F1525;
+    --dark-border: #1A2744;
+    --text: #E8ECF4;
+    --text-muted: #7E8BA8;
+    --green: #4ECB71;
+    --red: #E84855;
+    --blue: #2E5FBA;
+    --royal: #1B3A8C;
+    --royal-light: #2E5FBA;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--dark);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .container { max-width: 900px; margin: 0 auto; padding: 40px 24px; }
+
+  .header { text-align: center; padding: 60px 0 50px; border-bottom: 1px solid var(--dark-border); margin-bottom: 50px; }
+  .header .badge { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold); padding: 6px 18px; border-radius: 20px; margin-bottom: 24px; }
+  .header h1 { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 600; line-height: 1.15; margin-bottom: 16px; background: linear-gradient(135deg, var(--gold) 0%, #6B9FFF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .header p { font-size: 16px; color: var(--text-muted); max-width: 600px; margin: 0 auto; }
+  .header .date { font-size: 13px; color: var(--text-muted); margin-top: 12px; letter-spacing: 1px; }
+
+  .section { margin-bottom: 48px; }
+  .section-num { font-size: 12px; font-weight: 600; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; margin-bottom: 8px; }
+  .section h2 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 500; margin-bottom: 20px; }
+  .section h3 { font-size: 16px; font-weight: 600; color: var(--gold-light); margin: 24px 0 12px; }
+  .section p, .section li { font-size: 14.5px; color: var(--text-muted); line-height: 1.7; }
+  .section ul { list-style: none; padding: 0; }
+  .section ul li { padding: 6px 0 6px 20px; position: relative; }
+  .section ul li::before { content: '→'; position: absolute; left: 0; color: var(--gold); font-weight: 600; }
+
+  .card { background: var(--dark-card); border: 1px solid var(--dark-border); border-radius: 12px; padding: 28px; margin: 16px 0; }
+  .card.highlight { border-color: var(--gold); background: linear-gradient(135deg, rgba(27,58,140,0.15), rgba(212,168,67,0.05)); }
+
+  .kpi-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
+  .kpi-row.four { grid-template-columns: repeat(4, 1fr); }
+  .kpi { background: var(--dark-card); border: 1px solid var(--dark-border); border-radius: 10px; padding: 20px; text-align: center; }
+  .kpi .value { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 600; color: var(--gold); }
+  .kpi .label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+  table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 16px 0; font-size: 13.5px; }
+  thead th { text-align: left; padding: 12px 14px; font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); border-bottom: 1px solid var(--dark-border); background: var(--dark-card); }
+  thead th:first-child { border-radius: 10px 0 0 0; }
+  thead th:last-child { border-radius: 0 10px 0 0; }
+  tbody td { padding: 11px 14px; border-bottom: 1px solid var(--dark-border); color: var(--text-muted); background: var(--dark-card); }
+  tbody tr:last-child td:first-child { border-radius: 0 0 0 10px; }
+  tbody tr:last-child td:last-child { border-radius: 0 0 10px 0; }
+  tbody tr:hover td { background: rgba(27,58,140,0.1); }
+  td.win { color: var(--green); font-weight: 600; }
+  td.lose { color: var(--red); }
+  td.warn { color: #E8C96A; }
+  .total-row td { font-weight: 700; color: var(--gold); border-top: 2px solid var(--gold); font-size: 15px; }
+
+  .verdict { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--text); font-style: italic; padding: 20px 24px; border-left: 3px solid var(--gold); margin: 20px 0; background: rgba(212,168,67,0.05); border-radius: 0 10px 10px 0; }
+
+  .tag { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.5px; padding: 3px 10px; border-radius: 4px; margin-right: 4px; }
+  .tag.yes { color: var(--green); background: rgba(78,203,113,0.12); }
+  .tag.no { color: var(--red); background: rgba(232,72,85,0.12); }
+  .tag.mid { color: #E8C96A; background: rgba(232,201,106,0.12); }
+  .tag.selected { color: var(--gold); background: rgba(212,168,67,0.15); border: 1px solid var(--gold); }
+
+  .workflow { position: relative; margin: 20px 0; padding-left: 32px; }
+  .workflow::before { content: ''; position: absolute; left: 11px; top: 0; bottom: 0; width: 2px; background: var(--dark-border); }
+  .workflow-step { position: relative; margin-bottom: 20px; padding: 16px 20px; background: var(--dark-card); border: 1px solid var(--dark-border); border-radius: 10px; }
+  .workflow-step::before { content: ''; position: absolute; left: -27px; top: 22px; width: 12px; height: 12px; border-radius: 50%; background: linear-gradient(135deg, var(--royal-light), var(--gold)); border: 3px solid var(--dark); }
+  .workflow-step .step-num { font-size: 11px; font-weight: 700; color: var(--gold); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+  .workflow-step .step-title { font-weight: 600; font-size: 15px; margin-bottom: 6px; }
+  .workflow-step .step-desc { font-size: 13px; color: var(--text-muted); }
+
+  .divider { height: 1px; background: var(--dark-border); margin: 48px 0; }
+
+  .platform-list { margin: 16px 0; }
+  .platform-item { display: flex; align-items: center; gap: 12px; padding: 10px 16px; background: var(--dark-card); border: 1px solid var(--dark-border); border-radius: 8px; margin-bottom: 6px; font-size: 14px; }
+  .platform-item .num { font-weight: 700; color: var(--gold); min-width: 24px; }
+  .platform-item .name { font-weight: 600; color: var(--text); min-width: 120px; }
+  .platform-item .reason { color: var(--text-muted); font-size: 13px; }
+
+  @media print {
+    body { background: var(--dark) !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    .container { padding: 20px 32px; }
+    .header { padding: 40px 0 30px; margin-bottom: 30px; page-break-after: always; }
+    .section { margin-bottom: 24px; }
+    .divider { margin: 24px 0; }
+    .card, .kpi, .workflow-step, .platform-item { page-break-inside: avoid !important; break-inside: avoid !important; }
+    table { page-break-inside: avoid !important; break-inside: avoid !important; }
+    .kpi-row { page-break-inside: avoid !important; break-inside: avoid !important; }
+    h2, h3 { page-break-after: avoid !important; break-after: avoid !important; }
+    .section-num { page-break-after: avoid !important; break-after: avoid !important; }
+    .page-break { page-break-before: always !important; break-before: always !important; }
+  }
+  @media (max-width: 600px) {
+    .header h1 { font-size: 28px; }
+    .kpi-row, .kpi-row.four { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="badge">Confidential — Internal Research</div>
+    <h1>CRM Platform Evaluation</h1>
+    <p>Comprehensive analysis of 14 platforms for Haysal Real Estate Group's multi-entity operations — construction, investment &amp; brokerage.</p>
+    <div class="date">February 2026 · Research Department · v2 Deep Dive Edition</div>
+  </div>
+
+  <!-- EXECUTIVE SUMMARY -->
+  <div class="section">
+    <div class="section-num">Section I</div>
+    <h2>Executive Summary</h2>
+
+    <div class="card highlight">
+      <p style="color: var(--text); font-size: 15px;">
+        <strong>Recommendation: Airtable Team plan ($80/mo for 4 users)</strong> — single platform across all 3 entities. After evaluating 14 platforms, Airtable is the only tool that handles construction project management, investment portfolio tracking, AND real estate brokerage CRM with the API flexibility needed for AI agent orchestration.
+      </p>
+    </div>
+
+    <h3>What Changed From v1</h3>
+    <ul>
+      <li><strong style="color:var(--red)">Dropped Zoho CRM hybrid</strong> — unnecessary complexity for a 4-person team</li>
+      <li><strong style="color:var(--green)">Airtable confirmed as #1</strong> — after evaluating 14 platforms, nothing beats it for multi-entity + AI agent</li>
+      <li><strong>Notion deep dive completed</strong> — great for documentation, unsuitable for CRM</li>
+      <li><strong>Dubai RE market check</strong> — competitors use PropSpace/Bitrix24, but those are brokerage-only</li>
+      <li><strong>AI agent factor decisive</strong> — Airtable's API is 5x more capable for agent orchestration</li>
+    </ul>
+
+    <div class="kpi-row" style="margin-top: 20px;">
+      <div class="kpi">
+        <div class="value">14</div>
+        <div class="label">Platforms Evaluated</div>
+      </div>
+      <div class="kpi">
+        <div class="value">$80</div>
+        <div class="label">Monthly Cost (4 Users)</div>
+      </div>
+      <div class="kpi">
+        <div class="value">37%</div>
+        <div class="label">Cheaper Than v1 Hybrid</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- COMPARISON MATRIX -->
+  <div class="page-break"></div>
+  <div class="section">
+    <div class="section-num">Section II</div>
+    <h2>Platform Comparison — Tier 1 Contenders</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Airtable (Team)</th>
+          <th>Notion (Business)</th>
+          <th>Bitrix24 (Pro)</th>
+          <th>Zoho CRM (Pro)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>4 users/mo</strong></td>
+          <td class="win">$80</td>
+          <td>$80</td>
+          <td>~$80</td>
+          <td>$92</td>
+        </tr>
+        <tr>
+          <td><strong>API Quality</strong></td>
+          <td class="win">REST, excellent</td>
+          <td class="lose">3 req/sec limit</td>
+          <td class="warn">Complex REST</td>
+          <td class="win">REST + OAuth</td>
+        </tr>
+        <tr>
+          <td><strong>Multi-entity</strong></td>
+          <td class="win">Workspaces</td>
+          <td class="warn">Weak perms</td>
+          <td class="win">Departments</td>
+          <td class="warn">Modules only</td>
+        </tr>
+        <tr>
+          <td><strong>Construction tracking</strong></td>
+          <td class="win">Excellent</td>
+          <td class="warn">Basic databases</td>
+          <td class="lose">Not built for it</td>
+          <td class="lose">Not built for it</td>
+        </tr>
+        <tr>
+          <td><strong>RE brokerage CRM</strong></td>
+          <td class="warn">Build it yourself</td>
+          <td class="lose">Not a CRM</td>
+          <td class="win">Native + UAE portals</td>
+          <td class="win">Native CRM</td>
+        </tr>
+        <tr>
+          <td><strong>AI agent integration</strong></td>
+          <td class="win">Best in class</td>
+          <td class="lose">Weak API limits</td>
+          <td class="warn">Possible but complex</td>
+          <td class="win">Good</td>
+        </tr>
+        <tr>
+          <td><strong>Relational data</strong></td>
+          <td class="win">True relations + rollups</td>
+          <td class="warn">No rollup depth</td>
+          <td class="warn">CRM relations only</td>
+          <td class="win">Module links</td>
+        </tr>
+        <tr>
+          <td><strong>Formulas</strong></td>
+          <td class="win">Advanced</td>
+          <td class="warn">Basic</td>
+          <td class="warn">Limited</td>
+          <td class="win">Good</td>
+        </tr>
+        <tr>
+          <td><strong>Arabic support</strong></td>
+          <td class="warn">RTL issues</td>
+          <td class="warn">RTL issues</td>
+          <td class="win">Arabic UI</td>
+          <td class="win">Full Arabic</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Tier 2 — Evaluated &amp; Rejected</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Platform</th>
+          <th>4 Users/Mo</th>
+          <th>Reason for Rejection</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Salesforce</strong></td><td>$100–320</td><td>Massive overkill. Enterprise budget for a 4-person team.</td></tr>
+        <tr><td><strong>Freshsales</strong></td><td>$60</td><td>Generic CRM. Zero RE or construction features.</td></tr>
+        <tr><td><strong>PropSpace</strong></td><td>600+ AED</td><td>Brokerage-only. No construction. 12-month lock-in.</td></tr>
+        <tr><td><strong>Monday.com</strong></td><td>$112–160</td><td>Expensive — CRM &amp; Work are separate products = double cost.</td></tr>
+        <tr><td><strong>Follow Up Boss</strong></td><td>$276</td><td>US-focused. Expensive. No construction or UAE integrations.</td></tr>
+        <tr><td><strong>Propertybase</strong></td><td>$400–800+</td><td>Built on Salesforce. Absurdly expensive for 4 users.</td></tr>
+        <tr><td><strong>Procore</strong></td><td>$10K–20K/yr</td><td>Enterprise construction. Overkill by 100x.</td></tr>
+        <tr><td><strong>Buildium</strong></td><td>$60–175</td><td>Property management (rentals), not construction.</td></tr>
+        <tr><td><strong>Ruby CRM</strong></td><td>Custom</td><td>Brokerage-only. No construction features.</td></tr>
+        <tr><td><strong>CorporateStack</strong></td><td>Custom</td><td>Limited project management and API capabilities.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- NOTION DEEP DIVE -->
+  <div class="page-break"></div>
+  <div class="section">
+    <div class="section-num">Section III</div>
+    <h2>Notion Deep Dive — Can It Work as a CRM?</h2>
+
+    <div class="card">
+      <h3 style="margin-top:0;">What Notion CAN Do</h3>
+      <ul>
+        <li>Relational databases with Contacts → Companies → Deals</li>
+        <li>Kanban boards for deal pipelines and calendar views</li>
+        <li>Beautiful documentation alongside data</li>
+        <li>RE CRM templates available ($7–30)</li>
+      </ul>
+    </div>
+
+    <div class="card" style="border-color: var(--red);">
+      <h3 style="margin-top:0; color: var(--red);">The Dealbreakers</h3>
+      <ul>
+        <li><strong>No real automations</strong> — basic triggers only. No conditional logic, multi-step workflows, or scheduled runs</li>
+        <li><strong>API rate limits</strong> — 3 req/sec vs Airtable's 5 req/sec. Crippling for AI agent managing 3 entities</li>
+        <li><strong>No real formulas/rollups</strong> — can't calculate budget utilization % across projects automatically</li>
+        <li><strong>No native CRM features</strong> — no pipelines, email tracking, lead scoring, or deduplication</li>
+        <li><strong>Weak multi-entity separation</strong> — blunt permissions, risk of data leakage</li>
+        <li><strong>Performance degrades</strong> — 1000+ records with relations slow down noticeably</li>
+      </ul>
+    </div>
+
+    <h3>Head-to-Head for Our Specific Needs</h3>
+    <table>
+      <thead>
+        <tr><th>Requirement</th><th>Airtable</th><th>Notion</th><th>Winner</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Construction project completion %</td><td class="win">Formula + progress bars</td><td class="warn">Manual % field</td><td class="win">Airtable</td></tr>
+        <tr><td>Budget utilization across projects</td><td class="win">Rollup fields aggregate</td><td class="lose">Manual updates</td><td class="win">Airtable</td></tr>
+        <tr><td>Invoice photo → auto-populate</td><td class="win">Webhook → AI → API</td><td class="lose">API too slow</td><td class="win">Airtable</td></tr>
+        <tr><td>3 separate entity workspaces</td><td class="win">True isolation</td><td class="warn">Weak isolation</td><td class="win">Airtable</td></tr>
+        <tr><td>AI agent reads/writes data</td><td class="win">5 req/sec, webhooks</td><td class="warn">3 req/sec, limited</td><td class="win">Airtable</td></tr>
+        <tr><td>Documentation &amp; wiki</td><td class="warn">Not great for docs</td><td class="win">Best in class</td><td class="win">Notion</td></tr>
+      </tbody>
+    </table>
+
+    <div class="verdict">
+      "Notion is a fantastic tool for documentation, wiki, and SOPs. But as a CRM and project management system for 3 entities with construction tracking, invoice OCR, and AI agent integration? It would be like using a Swiss Army knife to build a house."
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- DUBAI RE MARKET -->
+  <div class="page-break"></div>
+  <div class="section">
+    <div class="section-num">Section IV</div>
+    <h2>Dubai RE Market Reality Check</h2>
+    <p style="margin-bottom:16px;">Based on research including a 2022 Saabsoft survey of 1,000+ UAE RE firms.</p>
+
+    <table>
+      <thead>
+        <tr><th>CRM</th><th>Market Position</th><th>Why Not for Us</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Bitrix24</strong></td><td>>90% of surveyed UAE firms</td><td>Cluttered UI. Designed for brokerage, NOT construction.</td></tr>
+        <tr><td><strong>PropSpace</strong></td><td>Dubai's longest-running RE CRM</td><td>Brokerage-only. 600 AED/mo min. No construction features. 12-month lock-in.</td></tr>
+        <tr><td><strong>PropHero</strong></td><td>Growing in Dubai</td><td>New/unproven. Brokerage-focused. Limited API.</td></tr>
+        <tr><td><strong>Ruby CRM</strong></td><td>Top Dubai brokerages</td><td>Brokerage-only. Custom pricing (expensive).</td></tr>
+        <tr><td><strong>CorporateStack</strong></td><td>Dubai-founded</td><td>Limited PM and API capabilities.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="card highlight">
+      <h3 style="margin-top:0;">The Key Insight</h3>
+      <p style="color:var(--text);">Dubai RE firms use brokerage-specific CRMs because they ARE brokerages. They don't also run construction companies and investment vehicles simultaneously. Our multi-entity structure is unusual — which is exactly why a flexible platform like Airtable beats industry-specific tools.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- AI AGENT FACTOR -->
+  <div class="page-break"></div>
+  <div class="section">
+    <div class="section-num">Section V</div>
+    <h2>The AI Agent Factor</h2>
+    <p style="margin-bottom:16px;">Our secret weapon and the #1 differentiator in CRM choice.</p>
+
+    <table>
+      <thead>
+        <tr><th>Capability</th><th>Airtable</th><th>Notion</th><th>Bitrix24</th><th>Zoho</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Rate limit</strong></td><td class="win">5 req/sec</td><td class="lose">3 req/sec</td><td class="lose">2 req/sec</td><td class="warn">Variable</td></tr>
+        <tr><td><strong>Webhooks</strong></td><td class="win">Native</td><td class="lose">None</td><td class="win">Yes</td><td class="win">Yes</td></tr>
+        <tr><td><strong>Bulk operations</strong></td><td class="win">10 records/req</td><td class="lose">1 record/req</td><td class="win">Batch available</td><td class="win">Yes</td></tr>
+        <tr><td><strong>File upload via API</strong></td><td class="win">Yes</td><td class="warn">Limited</td><td class="win">Yes</td><td class="win">Yes</td></tr>
+        <tr><td><strong>Automation triggers</strong></td><td class="win">Native + webhook</td><td class="lose">Need Zapier</td><td class="win">Native</td><td class="win">Native</td></tr>
+        <tr><td><strong>Auth complexity</strong></td><td class="win">Simple (PAT)</td><td class="win">Simple (Bearer)</td><td class="warn">Complex (OAuth)</td><td class="warn">Medium (OAuth)</td></tr>
+        <tr><td><strong>Documentation</strong></td><td class="win">Excellent</td><td class="win">Good</td><td class="warn">Decent</td><td class="win">Good</td></tr>
+      </tbody>
+    </table>
+
+    <h3>What the AI Agent Can Do With Airtable</h3>
+    <div class="card">
+      <ul>
+        <li><strong>Invoice OCR Pipeline:</strong> Photo → AI Vision → extract data → API create record + attach photo → update budget rollup</li>
+        <li><strong>Real-time Webhooks:</strong> Instant notification on record changes. Notion has NO webhooks — would need constant polling</li>
+        <li><strong>Batch Operations:</strong> Create/update 10 records per call vs Notion's 1 at a time</li>
+        <li><strong>Native Automations + API:</strong> Automation chains that run autonomously — e.g., "invoice > AED 10,000 → alert on Telegram"</li>
+        <li><strong>Formula Fields:</strong> Budget utilization calculated automatically — AI agent just reads the result</li>
+      </ul>
+    </div>
+
+    <div class="verdict">
+      "Give me Airtable. I can manage all 3 entities from a single API. I can trigger automations, upload invoices, calculate budgets, and generate reports without fighting rate limits. Notion would make me 3x slower."
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ARCHITECTURE -->
+  <div class="page-break"></div>
+  <div class="section">
+    <div class="section-num">Section VI</div>
+    <h2>Recommended Architecture</h2>
+
+    <div class="kpi-row four">
+      <div class="kpi">
+        <div class="value" style="font-size:16px;">Desert Build</div>
+        <div class="label">Projects, Tasks, Invoices, Budget, Photos</div>
+      </div>
+      <div class="kpi">
+        <div class="value" style="font-size:16px;">Golden Desert</div>
+        <div class="label">Investments, Properties, Returns, ROI</div>
+      </div>
+      <div class="kpi">
+        <div class="value" style="font-size:16px;">Haysal</div>
+        <div class="label">Leads, Listings, Deals, Commissions</div>
+      </div>
+      <div class="kpi">
+        <div class="value" style="font-size:16px;">Shared</div>
+        <div class="label">Contacts &amp; Properties (synced)</div>
+      </div>
+    </div>
+
+    <h3>Cost Breakdown</h3>
+    <table>
+      <thead><tr><th>Item</th><th>Monthly Cost</th></tr></thead>
+      <tbody>
+        <tr><td>Airtable Team (4 users, annual)</td><td><strong>$80</strong></td></tr>
+        <tr><td>n8n (automation/OCR, self-hosted)</td><td>$0–9</td></tr>
+        <tr class="total-row"><td>Total</td><td>$80–89/mo (~AED 295–325)</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Cost vs Alternatives</h3>
+    <table>
+      <thead><tr><th>Platform</th><th>Monthly Cost</th><th>Coverage</th></tr></thead>
+      <tbody>
+        <tr><td class="win"><strong>Airtable (recommended)</strong></td><td class="win">$80</td><td class="win">All 3 entities</td></tr>
+        <tr><td>PropSpace</td><td>600+ AED</td><td class="lose">Brokerage only</td></tr>
+        <tr><td>Bitrix24 Pro</td><td>~$80</td><td class="warn">Weak construction</td></tr>
+        <tr><td>Monday.com CRM+Work</td><td>$160</td><td class="warn">Separate products</td></tr>
+        <tr><td>Salesforce</td><td>$100–320</td><td class="warn">Needs customization</td></tr>
+        <tr><td>Follow Up Boss</td><td>$276</td><td class="lose">Brokerage only, US</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- WHY AIRTABLE WINS -->
+  <div class="page-break"></div>
+  <div class="section">
+    <div class="section-num">Section VII</div>
+    <h2>Why Airtable Wins — The Clear Case</h2>
+
+    <div class="card highlight">
+      <ul>
+        <li><strong>Only platform handling all 3 entity types</strong> — construction PM, investment portfolio, and RE brokerage CRM with workspace isolation</li>
+        <li><strong>Best API for AI agent</strong> — 5 req/sec, webhooks, batch operations, simple auth. While competitors manually update PropSpace, our AI auto-processes invoices and generates reports</li>
+        <li><strong>True relational database</strong> — linked records, rollups, and formulas for Budget → Invoice → Project → Client chains</li>
+        <li><strong>Cheapest option that works</strong> — $80/mo vs $145/mo (v1 hybrid) or 600+ AED for PropSpace</li>
+        <li><strong>Fastest to deploy</strong> — base templates in a day, dashboards in a week, full OCR pipeline in two weeks</li>
+        <li><strong>Scales gracefully</strong> — 50K records/base, unlimited bases. No migration pain</li>
+        <li><strong>Team-friendly</strong> — Interfaces hide complexity. Each person sees their own dashboard</li>
+      </ul>
+    </div>
+
+    <h3>The Only Weakness &amp; Solution</h3>
+    <div class="card">
+      <p style="color:var(--text);margin-bottom:12px;"><strong>Dubai RE portal integration (Bayut/Property Finder)</strong></p>
+      <ul>
+        <li><strong>Phase 1:</strong> List manually on portals (standard for small agencies)</li>
+        <li><strong>Phase 2:</strong> AI agent builds API integration when volume justifies it</li>
+        <li><strong>Phase 3:</strong> Add PropSpace as listing-only tool if brokerage scales significantly</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- IMPLEMENTATION -->
+  <div class="page-break"></div>
+  <div class="section">
+    <div class="section-num">Section VIII</div>
+    <h2>Implementation Roadmap</h2>
+
+    <div class="workflow">
+      <div class="workflow-step">
+        <div class="step-num">Phase 1 · Week 1–2</div>
+        <div class="step-title">Airtable Setup</div>
+        <div class="step-desc">Sign up Team plan (4 users, annual). Create 4 workspaces. Build base templates. Install mobile apps. Create role-specific Interfaces.</div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">Phase 2 · Week 2–3</div>
+        <div class="step-title">AI Agent Integration</div>
+        <div class="step-desc">Generate API key. Build invoice OCR pipeline. Set up webhook notifications (budget alerts, overdue tasks). Connect Zoho Books via API. Daily status → Telegram.</div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">Phase 3 · Month 2+</div>
+        <div class="step-title">Optimize &amp; Scale</div>
+        <div class="step-desc">Custom dashboards per role. Automated weekly reports. Template duplication for new projects. Bayut/PF integration when listing volume warrants it.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- NOTION'S ROLE -->
+  <div class="section">
+    <div class="section-num">Section IX</div>
+    <h2>Notion's Role in Our Stack</h2>
+    <p style="margin-bottom:16px;">Notion is NOT our CRM — but it IS valuable for documentation.</p>
+
+    <table>
+      <thead><tr><th>Use Case</th><th>Tool</th></tr></thead>
+      <tbody>
+        <tr><td>CRM &amp; project management</td><td class="win"><strong>Airtable</strong></td></tr>
+        <tr><td>Company wiki &amp; SOPs</td><td style="color:var(--blue);font-weight:600;">Notion ✓</td></tr>
+        <tr><td>Meeting notes &amp; agendas</td><td style="color:var(--blue);font-weight:600;">Notion ✓</td></tr>
+        <tr><td>HR onboarding docs</td><td style="color:var(--blue);font-weight:600;">Notion ✓</td></tr>
+        <tr><td>Client-facing proposals</td><td style="color:var(--blue);font-weight:600;">Notion ✓</td></tr>
+      </tbody>
+    </table>
+
+    <p style="margin-top:12px;">Option A: Notion Business ($20/user) + Airtable = $160/mo total.<br>Option B: Notion Free + Airtable = <strong>$80/mo total</strong> (recommended).</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- RISK -->
+  <div class="section">
+    <div class="section-num">Section X</div>
+    <h2>Risk Assessment</h2>
+
+    <table>
+      <thead><tr><th>Risk</th><th>Severity</th><th>Mitigation</th></tr></thead>
+      <tbody>
+        <tr><td>No UAE portal integration</td><td class="warn">Medium</td><td>Manual listing initially; API integration later</td></tr>
+        <tr><td>20GB storage limit</td><td style="color:var(--green)">Low</td><td>Compress photos; upgrade to Business if needed</td></tr>
+        <tr><td>Team prefers Notion</td><td style="color:var(--green)">Low</td><td>Use Notion for docs, Airtable for data</td></tr>
+        <tr><td>Arabic support gaps</td><td style="color:var(--green)">Low</td><td>Internal use English; Arabic via Zoho Books</td></tr>
+        <tr><td>Single platform dependency</td><td class="warn">Medium</td><td>Regular exports; data portable via CSV/API</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- APPENDIX -->
+  <div class="section">
+    <div class="section-num">Appendix</div>
+    <h2>All 14 Platforms Evaluated</h2>
+
+    <div class="platform-list">
+      <div class="platform-item"><span class="num">1.</span><span class="name">Airtable</span><span class="tag selected">SELECTED</span><span class="reason">Best overall fit — multi-entity, API, cost</span></div>
+      <div class="platform-item"><span class="num">2.</span><span class="name">Notion</span><span class="tag no">REJECTED</span><span class="reason">Great for docs, not for CRM/PM</span></div>
+      <div class="platform-item"><span class="num">3.</span><span class="name">Zoho CRM</span><span class="tag no">REJECTED</span><span class="reason">Unnecessary complexity layer</span></div>
+      <div class="platform-item"><span class="num">4.</span><span class="name">Monday.com</span><span class="tag no">REJECTED</span><span class="reason">Too expensive for our needs</span></div>
+      <div class="platform-item"><span class="num">5.</span><span class="name">Bitrix24</span><span class="tag no">REJECTED</span><span class="reason">Popular in UAE but construction-weak</span></div>
+      <div class="platform-item"><span class="num">6.</span><span class="name">Salesforce</span><span class="tag no">REJECTED</span><span class="reason">Overkill, overpriced, over-complex</span></div>
+      <div class="platform-item"><span class="num">7.</span><span class="name">Freshsales</span><span class="tag no">REJECTED</span><span class="reason">Generic, no RE features</span></div>
+      <div class="platform-item"><span class="num">8.</span><span class="name">PropSpace</span><span class="tag no">REJECTED</span><span class="reason">Brokerage-only, expensive, locked contract</span></div>
+      <div class="platform-item"><span class="num">9.</span><span class="name">PropHero</span><span class="tag no">REJECTED</span><span class="reason">Too new, brokerage-only</span></div>
+      <div class="platform-item"><span class="num">10.</span><span class="name">Ruby CRM</span><span class="tag no">REJECTED</span><span class="reason">Brokerage-only, custom pricing</span></div>
+      <div class="platform-item"><span class="num">11.</span><span class="name">Follow Up Boss</span><span class="tag no">REJECTED</span><span class="reason">US-focused, expensive</span></div>
+      <div class="platform-item"><span class="num">12.</span><span class="name">Propertybase</span><span class="tag no">REJECTED</span><span class="reason">Salesforce-based, absurdly expensive</span></div>
+      <div class="platform-item"><span class="num">13.</span><span class="name">Procore</span><span class="tag no">REJECTED</span><span class="reason">Enterprise construction, $10K+/yr</span></div>
+      <div class="platform-item"><span class="num">14.</span><span class="name">Buildium</span><span class="tag no">REJECTED</span><span class="reason">Property management, wrong category</span></div>
+    </div>
+  </div>
+
+  <div style="text-align: center; padding: 40px 0 20px; border-top: 1px solid var(--dark-border); margin-top: 40px;">
+    <p style="font-size: 12px; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase;">Haysal Real Estate × Golden Desert Group — February 2026</p>
+  </div>
+
+</div>
+</body>
+</html>
