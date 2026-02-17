@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Golden Desert Investments — Building Wealth Through Dubai Real Estate</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #D4A843;
+    --gold-light: #E8C96A;
+    --dark: #0A0E1A;
+    --dark-card: #0F1525;
+    --dark-border: #1A2744;
+    --text: #E8ECF4;
+    --text-muted: #7E8BA8;
+    --green: #4ECB71;
+    --red: #E84855;
+    --blue: #2E5FBA;
+    --royal: #1B3A8C;
+    --royal-light: #2E5FBA;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--dark);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .container { max-width: 900px; margin: 0 auto; padding: 40px 24px; }
+
+  /* Header */
+  .header { text-align: center; padding: 80px 0 60px; border-bottom: 1px solid var(--dark-border); margin-bottom: 50px; }
+  .header .badge { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold); padding: 6px 18px; border-radius: 20px; margin-bottom: 24px; }
+  .header h1 { font-family: 'Playfair Display', serif; font-size: 44px; font-weight: 600; line-height: 1.15; margin-bottom: 16px; background: linear-gradient(135deg, var(--gold) 0%, #6B9FFF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .header .subtitle { font-size: 18px; color: var(--text-muted); max-width: 600px; margin: 0 auto 24px; }
+  .header .tagline { font-size: 13px; color: var(--text-muted); letter-spacing: 1px; }
+
+  /* Section */
+  .section { margin-bottom: 48px; }
+  .section-num { font-size: 12px; font-weight: 600; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; margin-bottom: 8px; }
+  .section h2 { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 500; margin-bottom: 20px; }
+  .section h3 { font-size: 16px; font-weight: 600; color: var(--gold-light); margin: 24px 0 12px; }
+  .section p, .section li { font-size: 15px; color: var(--text-muted); line-height: 1.7; }
+  .section ul { list-style: none; padding: 0; }
+  .section ul li { padding: 6px 0 6px 20px; position: relative; }
+  .section ul li::before { content: '→'; position: absolute; left: 0; color: var(--gold); font-weight: 600; }
+
+  /* Cards */
+  .card { background: var(--dark-card); border: 1px solid var(--dark-border); border-radius: 12px; padding: 28px; margin: 16px 0; }
+  .card.highlight { border-color: var(--gold); background: linear-gradient(135deg, rgba(27,58,140,0.15), rgba(212,168,67,0.05)); }
+  .card.gold-border { border-color: var(--gold); }
+
+  /* KPI */
+  .kpi-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
+  .kpi-row.four { grid-template-columns: repeat(4, 1fr); }
+  .kpi { background: var(--dark-card); border: 1px solid var(--dark-border); border-radius: 10px; padding: 20px; text-align: center; }
+  .kpi .value { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 600; color: var(--gold); }
+  .kpi .label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+  /* Tables */
+  .data-table { width: 100%; border-collapse: separate; border-spacing: 0; margin: 16px 0; font-size: 14px; }
+  .data-table thead th { text-align: left; padding: 14px 16px; font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); border-bottom: 1px solid var(--dark-border); background: var(--dark-card); }
+  .data-table thead th:first-child { border-radius: 10px 0 0 0; }
+  .data-table thead th:last-child { border-radius: 0 10px 0 0; }
+  .data-table tbody td { padding: 14px 16px; border-bottom: 1px solid var(--dark-border); color: var(--text-muted); background: var(--dark-card); }
+  .data-table tbody tr:last-child td:first-child { border-radius: 0 0 0 10px; }
+  .data-table tbody tr:last-child td:last-child { border-radius: 0 0 10px 0; }
+  .data-table tbody tr:hover td { background: rgba(27,58,140,0.1); }
+  .data-table .amount { text-align: right; font-weight: 500; color: var(--text); font-variant-numeric: tabular-nums; }
+  .data-table .total-row td { font-weight: 700; color: var(--gold); border-top: 2px solid var(--gold); font-size: 15px; }
+  .data-table .profit-row td { font-weight: 700; color: var(--green); border-top: 2px solid var(--green); font-size: 15px; background: rgba(78,203,113,0.05); }
+  .data-table .investor-row td { font-weight: 600; color: var(--gold-light); background: rgba(212,168,67,0.05); }
+  .data-table .operator-row td { font-weight: 500; color: var(--text-muted); }
+
+  /* Workflow */
+  .workflow { position: relative; margin: 20px 0; padding-left: 32px; }
+  .workflow::before { content: ''; position: absolute; left: 11px; top: 0; bottom: 0; width: 2px; background: var(--dark-border); }
+  .workflow-step { position: relative; margin-bottom: 20px; padding: 16px 20px; background: var(--dark-card); border: 1px solid var(--dark-border); border-radius: 10px; }
+  .workflow-step::before { content: ''; position: absolute; left: -27px; top: 22px; width: 12px; height: 12px; border-radius: 50%; background: linear-gradient(135deg, var(--royal-light), var(--gold)); border: 3px solid var(--dark); }
+  .workflow-step .step-num { font-size: 11px; font-weight: 700; color: var(--gold); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+  .workflow-step .step-title { font-weight: 600; font-size: 15px; margin-bottom: 6px; }
+  .workflow-step .step-desc { font-size: 13px; color: var(--text-muted); }
+
+  /* Split display */
+  .split-box { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin: 16px 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--dark-border); }
+  .split-investor { background: linear-gradient(135deg, rgba(212,168,67,0.12), rgba(212,168,67,0.04)); padding: 20px 24px; }
+  .split-operator { background: var(--dark-card); padding: 20px 24px; border-left: 1px solid var(--dark-border); }
+  .split-label { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px; }
+  .split-label.gold { color: var(--gold); }
+  .split-label.muted { color: var(--text-muted); }
+  .split-amount { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 600; }
+  .split-amount.gold { color: var(--gold); }
+  .split-pct { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+  /* Disclaimer */
+  .disclaimer { background: rgba(212,168,67,0.06); border: 1px solid rgba(212,168,67,0.25); border-radius: 10px; padding: 20px 24px; margin: 20px 0; font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+  .disclaimer strong { color: var(--gold); }
+
+  /* Golden visa badge */
+  .visa-badge { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold); padding: 4px 14px; border-radius: 20px; margin-bottom: 12px; }
+
+  /* Tier header */
+  .tier-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
+  .tier-header .tier-info { flex: 1; }
+  .tier-meta { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+
+  .divider { height: 1px; background: var(--dark-border); margin: 48px 0; }
+
+  /* Content Grid */
+  .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+  .content-item { background: var(--dark-card); border: 1px solid var(--dark-border); border-radius: 10px; padding: 16px; }
+  .content-item .count { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 600; color: var(--gold); }
+  .content-item .type { font-size: 14px; font-weight: 600; margin: 4px 0; }
+  .content-item .example { font-size: 12px; color: var(--text-muted); font-style: italic; }
+
+  /* Footer */
+  .footer { text-align: center; padding: 40px 0; border-top: 1px solid var(--dark-border); margin-top: 40px; }
+  .footer .brand { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--gold); margin-bottom: 8px; }
+  .footer p { font-size: 13px; color: var(--text-muted); }
+
+  /* Print */
+  @media print {
+    body { background: var(--dark) !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    .container { padding: 20px 32px; }
+    .header { padding: 50px 0 40px; margin-bottom: 30px; page-break-after: always; }
+    .section { margin-bottom: 24px; }
+    .divider { margin: 24px 0; }
+    .card, .kpi, .workflow-step, .content-item, .split-box, .disclaimer { page-break-inside: avoid !important; break-inside: avoid !important; }
+    .data-table { page-break-inside: avoid !important; break-inside: avoid !important; }
+    .kpi-row, .content-grid { page-break-inside: avoid !important; break-inside: avoid !important; }
+    h2, h3 { page-break-after: avoid !important; break-after: avoid !important; }
+    .section-num { page-break-after: avoid !important; break-after: avoid !important; }
+    .page-break { page-break-before: always !important; break-before: always !important; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- ==================== COVER ==================== -->
+  <div class="header">
+    <div class="badge">Investor Presentation — Q1 2026</div>
+    <h1>Golden Desert Investments</h1>
+    <p class="subtitle">Building Wealth Through Dubai Real Estate</p>
+    <p class="tagline">Haysal Real Estate (Brokerage) &bull; Desert Build (Construction Management)</p>
+  </div>
+
+  <!-- ==================== 01 OUR EDGE ==================== -->
+  <div class="section">
+    <div class="section-num">01 — Competitive Advantage</div>
+    <h2>Our Edge</h2>
+    <p style="margin-bottom: 16px;">Golden Desert Investments combines in-house brokerage with in-house construction management — a vertically integrated model that eliminates the margin leakage found in traditional flipping operations.</p>
+    <div class="kpi-row">
+      <div class="kpi">
+        <div class="value">In-House</div>
+        <div class="label">Construction Management</div>
+      </div>
+      <div class="kpi">
+        <div class="value">In-House</div>
+        <div class="label">Brokerage &amp; Exit</div>
+      </div>
+      <div class="kpi">
+        <div class="value">AI-Driven</div>
+        <div class="label">Deal Scoring</div>
+      </div>
+    </div>
+    <ul>
+      <li><strong>Desert Build</strong> — compressed contractor margins through established relationships and volume purchasing</li>
+      <li><strong>Haysal Real Estate</strong> — sourcing and exit handled internally, keeping commissions within the group</li>
+      <li><strong>Direct owner sourcing</strong> — off-market deal pipeline through direct outreach, not portal buying</li>
+      <li><strong>AI-powered market analysis</strong> — data-driven deal scoring, pricing, and comparable research</li>
+      <li><strong>Proven execution</strong> — verified case studies across multiple investment tiers</li>
+    </ul>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ==================== 02 TRACK RECORD ==================== -->
+  <div class="section page-break">
+    <div class="section-num">02 — Track Record</div>
+    <h2>Proven Execution</h2>
+
+    <div class="card highlight">
+      <h3 style="margin-top: 0;">Marina Residence, Palm Jumeirah</h3>
+      <p>Acquired a dated 2008 Nakheel unit and executed a full transformation to contemporary luxury standard — new kitchen, bathrooms, flooring, smart home integration, and professional staging. This deal demonstrates the core thesis: buy dated, renovate to current standards, sell at premium. Strong ROI delivered to investor.</p>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top: 0;">JBR Penthouse, Sadaf</h3>
+      <p>Duplex penthouse with full luxury renovation completed to specification — reconfigured upper floor, feature staircase lighting, smart home, built-in bar. Demonstrates our ability to execute at the highest specification level in demanding buildings.</p>
+      <p style="margin-top: 8px; font-size: 13px; color: var(--text-muted); font-style: italic;">Currently subject to a commercial dispute with the property owner — a matter being resolved through proper legal channels, separate from our investor partnership model.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ==================== 03 HOW IT WORKS ==================== -->
+  <div class="section page-break">
+    <div class="section-num">03 — The Process</div>
+    <h2>How It Works</h2>
+
+    <div class="workflow">
+      <div class="workflow-step">
+        <div class="step-num">Step 1</div>
+        <div class="step-title">Source</div>
+        <div class="step-desc">Off-market deal sourcing through direct owner outreach, AI-powered market scanning, and broker network. We target dated properties in premium locations with clear renovation upside.</div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">Step 2</div>
+        <div class="step-title">Buy</div>
+        <div class="step-desc">Property purchased in investor's name (title deed). Acquisition costs, DLD fees, and agency commission factored into the deal budget. Property title provides full asset protection.</div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">Step 3</div>
+        <div class="step-title">Renovate</div>
+        <div class="step-desc">Desert Build manages construction with fixed-price contracts, milestone payments, and compressed contractor margins. Design-led renovations targeting current buyer expectations.</div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">Step 4</div>
+        <div class="step-title">Sell</div>
+        <div class="step-desc">Haysal Real Estate handles the exit — professional photography, staging, multi-platform marketing. Targeting premium buyers willing to pay for turnkey quality.</div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">Step 5</div>
+        <div class="step-title">Profit</div>
+        <div class="step-desc">Net profit split 70/30 — 70% to the investor, 30% to the operator. Clean, transparent, and aligned incentives.</div>
+      </div>
+    </div>
+
+    <div class="card highlight" style="text-align: center;">
+      <div style="font-size: 13px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px;">Profit Split on Every Deal</div>
+      <div style="font-family: 'Playfair Display', serif; font-size: 36px; color: var(--gold);">70 / 30</div>
+      <div style="font-size: 14px; color: var(--text-muted); margin-top: 4px;">Investor / Operator</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ==================== 04 RENOVATION METHODOLOGY ==================== -->
+  <div class="section page-break">
+    <div class="section-num">04 — Renovation Methodology</div>
+    <h2>Cost Benchmarks &amp; Assumptions</h2>
+    <p style="margin-bottom: 16px;">All renovation budgets in this presentation are based on current Dubai market benchmark ranges per square foot:</p>
+
+    <table class="data-table">
+      <thead>
+        <tr><th>Tier</th><th>Scope</th><th style="text-align:right;">AED / sqft</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Basic Refresh</td><td>Paint, floors, lighting, fixture swap, staging</td><td class="amount">60 – 130</td></tr>
+        <tr><td>Mid Transformation</td><td>New kitchen, bathrooms, engineered flooring, smart features</td><td class="amount">190 – 350</td></tr>
+        <tr><td>Luxury</td><td>Premium materials, bespoke finishes, full smart home</td><td class="amount">500 – 800</td></tr>
+        <tr><td>Ultra-Luxury</td><td>Imported marble, Gaggenau/Miele, Crestron, bespoke joinery</td><td class="amount">800 – 1,500</td></tr>
+      </tbody>
+    </table>
+
+    <div class="disclaimer">
+      <strong>Note:</strong> These are general market rates sourced from industry reports, contractor benchmarks, and comparable project data across Dubai — NOT Desert Build's actual pricing. Desert Build's established contractor relationships and volume may result in different (potentially more competitive) numbers. <strong>Input from the Desert Build team on actual costs per item would allow us to refine these projections. Your input here is appreciated.</strong>
+    </div>
+
+    <div class="disclaimer">
+      <strong>⚠ On Annualized Returns:</strong> Throughout this presentation, we show an "annualized equivalent" alongside each deal's actual profit. This is a standard financial metric that scales the deal's return to a 12-month basis for comparison purposes. However: <strong>annualized figures assume immediate reinvestment into the next deal with zero downtime — which is theoretical. The real commitment is the per-deal profit and timeframe. Actual annual returns depend on deal flow velocity, sourcing speed, and market conditions.</strong>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ==================== TIER 1: 500K ==================== -->
+  <div class="section page-break">
+    <div class="section-num">05 — Tier 1</div>
+    <h2>AED 500K — Entry Level</h2>
+    <div class="tier-meta">Buy-Upgrade-Flip &bull; Studios (350–450 sqft) &bull; 4–6 months</div>
+    <p style="margin: 12px 0;">Target areas: International City (Phase 1), Dubai South (MAG 5), Discovery Gardens</p>
+
+    <h3>Sample Deal — International City Studio</h3>
+    <table class="data-table">
+      <thead><tr><th>Line Item</th><th style="text-align:right;">Amount (AED)</th></tr></thead>
+      <tbody>
+        <tr><td>Purchase Price</td><td class="amount">310,000</td></tr>
+        <tr><td>Acquisition Costs (DLD, agency, etc.)</td><td class="amount">28,500</td></tr>
+        <tr><td>Renovation (basic refresh)</td><td class="amount">55,000</td></tr>
+        <tr><td>Holding + Exit Costs</td><td class="amount">17,500</td></tr>
+        <tr class="total-row"><td>Total Investment</td><td class="amount">411,000</td></tr>
+        <tr><td>Sale Price</td><td class="amount">520,000</td></tr>
+        <tr class="profit-row"><td>Net Profit</td><td class="amount">109,000</td></tr>
+      </tbody>
+    </table>
+
+    <div class="split-box">
+      <div class="split-investor">
+        <div class="split-label gold">Investor Return (70%)</div>
+        <div class="split-amount gold">AED 76,300</div>
+        <div class="split-pct">on AED 411K invested</div>
+      </div>
+      <div class="split-operator">
+        <div class="split-label muted">Operator Return (30%)</div>
+        <div class="split-amount">AED 32,700</div>
+        <div class="split-pct">&nbsp;</div>
+      </div>
+    </div>
+
+    <div class="kpi-row">
+      <div class="kpi"><div class="value">~19%</div><div class="label">Per-Deal ROI</div></div>
+      <div class="kpi"><div class="value">53–80%</div><div class="label">Annualized*</div></div>
+      <div class="kpi"><div class="value">8–10%</div><div class="label">Rental Fallback Yield</div></div>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top:0;">Risk &amp; Mitigation</h3>
+      <ul>
+        <li>Risk level: Medium — tight margins require disciplined execution</li>
+        <li>Rental fallback at 8–10% gross yield (International City), 12–14% (Dubai South)</li>
+        <li>Fixed-price renovation contracts; Desert Build cost compression</li>
+        <li>Legal: Simple Profit Share Agreement — title in investor's name</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ==================== TIER 2: 1M ==================== -->
+  <div class="section page-break">
+    <div class="section-num">06 — Tier 2</div>
+    <h2>AED 1M — Mid Entry</h2>
+    <div class="tier-meta">Buy-Upgrade-Flip &bull; 1BR apartments &bull; 4–6 months</div>
+    <p style="margin: 12px 0;">Target areas: JLT (Jumeirah Lake Towers), Dubai Sports City, Discovery Gardens</p>
+
+    <h3>Sample Deal — 1BR JLT (Concorde/Goldcrest Tower)</h3>
+    <table class="data-table">
+      <thead><tr><th>Line Item</th><th style="text-align:right;">Amount (AED)</th></tr></thead>
+      <tbody>
+        <tr><td>Purchase Price</td><td class="amount">750,000</td></tr>
+        <tr><td>Acquisition Costs</td><td class="amount">56,000</td></tr>
+        <tr><td>Renovation (basic-to-mid refresh)</td><td class="amount">85,000</td></tr>
+        <tr><td>Holding + Exit Costs</td><td class="amount">32,000</td></tr>
+        <tr class="total-row"><td>Total Investment</td><td class="amount">923,000</td></tr>
+        <tr><td>Sale Price</td><td class="amount">1,050,000</td></tr>
+        <tr class="profit-row"><td>Net Profit</td><td class="amount">127,000</td></tr>
+      </tbody>
+    </table>
+
+    <div class="split-box">
+      <div class="split-investor">
+        <div class="split-label gold">Investor Return (70%)</div>
+        <div class="split-amount gold">AED 88,900</div>
+        <div class="split-pct">on AED 923K invested</div>
+      </div>
+      <div class="split-operator">
+        <div class="split-label muted">Operator Return (30%)</div>
+        <div class="split-amount">AED 38,100</div>
+        <div class="split-pct">&nbsp;</div>
+      </div>
+    </div>
+
+    <div class="kpi-row">
+      <div class="kpi"><div class="value">~14%</div><div class="label">Per-Deal ROI</div></div>
+      <div class="kpi"><div class="value">28–41%</div><div class="label">Annualized*</div></div>
+      <div class="kpi"><div class="value">7–9%</div><div class="label">Rental Fallback Yield</div></div>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top:0;">Risk &amp; Mitigation</h3>
+      <ul>
+        <li>Risk level: Medium — significantly better margins than 500K tier; stronger resale liquidity</li>
+        <li>Deep buyer pools in JLT/Sports City; zero new supply in JLT (mature community)</li>
+        <li>Legal: Simple Profit Share Agreement — title in investor's name</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ==================== TIER 3: 3M ==================== -->
+  <div class="section page-break">
+    <div class="section-num">07 — Tier 3</div>
+    <h2>AED 3M — Prime Locations</h2>
+    <div class="visa-badge">🏛 Golden Visa Eligible</div>
+    <div class="tier-meta">Buy-Upgrade-Flip &bull; 2BR prime / 3BR premium &bull; 5–8 months</div>
+    <p style="margin: 12px 0;">Target areas: Business Bay, Dubai Marina, JBR (Jumeirah Beach Residence)</p>
+
+    <h3>Sample Deal — 2BR Dubai Marina (Older Tower)</h3>
+    <table class="data-table">
+      <thead><tr><th>Line Item</th><th style="text-align:right;">Amount (AED)</th></tr></thead>
+      <tbody>
+        <tr><td>Purchase Price</td><td class="amount">2,200,000</td></tr>
+        <tr><td>Acquisition Costs</td><td class="amount">145,000</td></tr>
+        <tr><td>Renovation (mid transformation)</td><td class="amount">275,000</td></tr>
+        <tr><td>Holding + Exit Costs</td><td class="amount">100,000</td></tr>
+        <tr class="total-row"><td>Total Investment</td><td class="amount">2,720,000</td></tr>
+        <tr><td>Sale Price</td><td class="amount">3,100,000</td></tr>
+        <tr class="profit-row"><td>Net Profit</td><td class="amount">380,000</td></tr>
+      </tbody>
+    </table>
+
+    <div class="split-box">
+      <div class="split-investor">
+        <div class="split-label gold">Investor Return (70%)</div>
+        <div class="split-amount gold">AED 266,000</div>
+        <div class="split-pct">on AED 2.72M invested</div>
+      </div>
+      <div class="split-operator">
+        <div class="split-label muted">Operator Return (30%)</div>
+        <div class="split-amount">AED 114,000</div>
+        <div class="split-pct">&nbsp;</div>
+      </div>
+    </div>
+
+    <div class="kpi-row">
+      <div class="kpi"><div class="value">~14%</div><div class="label">Per-Deal ROI</div></div>
+      <div class="kpi"><div class="value">21–34%</div><div class="label">Annualized*</div></div>
+      <div class="kpi"><div class="value">5–12%</div><div class="label">Rental Fallback Yield</div></div>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top:0;">Why This Tier Is the Sweet Spot</h3>
+      <ul>
+        <li>Strongest risk-adjusted tier — premium locations with limited new supply</li>
+        <li>Marina and JBR are land-constrained — permanent scarcity premium</li>
+        <li>Renovation premium of 25–40% is well-documented in these areas</li>
+        <li>Short-term rental license boosts fallback yields to 8–12%</li>
+        <li><strong>Golden Visa:</strong> AED 2M+ property qualifies for 10-year UAE residency</li>
+        <li>Legal: Notarized Profit Share Agreement — title in investor's name</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ==================== TIER 4: 5M ==================== -->
+  <div class="section page-break">
+    <div class="section-num">08 — Tier 4</div>
+    <h2>AED 5M — Trophy Assets</h2>
+    <div class="visa-badge">🏛 Golden Visa Eligible</div>
+    <div class="tier-meta">Buy-Upgrade-Flip &bull; Premium 3BR / penthouses / compact villas &bull; 6–9 months</div>
+    <p style="margin: 12px 0;">Target areas: Palm Jumeirah (Shoreline/Golden Mile), The Springs / Arabian Ranches 1, JBR penthouses</p>
+
+    <h3>Sample Deal — 3BR Palm Shoreline Apartment</h3>
+    <table class="data-table">
+      <thead><tr><th>Line Item</th><th style="text-align:right;">Amount (AED)</th></tr></thead>
+      <tbody>
+        <tr><td>Purchase Price</td><td class="amount">3,900,000</td></tr>
+        <tr><td>Acquisition Costs</td><td class="amount">236,000</td></tr>
+        <tr><td>Renovation (luxury transformation)</td><td class="amount">400,000</td></tr>
+        <tr><td>Holding + Exit Costs</td><td class="amount">214,000</td></tr>
+        <tr class="total-row"><td>Total Investment</td><td class="amount">4,750,000</td></tr>
+        <tr><td>Sale Price</td><td class="amount">5,500,000</td></tr>
+        <tr class="profit-row"><td>Net Profit</td><td class="amount">750,000</td></tr>
+      </tbody>
+    </table>
+
+    <div class="split-box">
+      <div class="split-investor">
+        <div class="split-label gold">Investor Return (70%)</div>
+        <div class="split-amount gold">AED 525,000</div>
+        <div class="split-pct">on AED 4.75M invested</div>
+      </div>
+      <div class="split-operator">
+        <div class="split-label muted">Operator Return (30%)</div>
+        <div class="split-amount">AED 225,000</div>
+        <div class="split-pct">&nbsp;</div>
+      </div>
+    </div>
+
+    <div class="kpi-row">
+      <div class="kpi"><div class="value">~16%</div><div class="label">Per-Deal ROI</div></div>
+      <div class="kpi"><div class="value">21–32%</div><div class="label">Annualized*</div></div>
+      <div class="kpi"><div class="value">5–15%</div><div class="label">Rental Fallback Yield</div></div>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top:0;">Risk &amp; Mitigation</h3>
+      <ul>
+        <li>Risk level: Medium-High — narrower buyer pool but higher willingness to pay for quality</li>
+        <li>Palm/JBR permanent scarcity premium; strong short-term rental fallback (AED 250K–350K/yr)</li>
+        <li>Staging and design narrative drive premiums at this level</li>
+        <li>Legal: Notarized Investment Agreement with escrow, milestone-based fund release</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ==================== TIER 5: 10M ==================== -->
+  <div class="section page-break">
+    <div class="section-num">09 — Tier 5</div>
+    <h2>AED 10M — Premium Repositioning</h2>
+    <div class="visa-badge">🏛 Golden Visa Eligible</div>
+    <div class="tier-meta">Buy-Upgrade-Flip &bull; Large villas, penthouses, or multi-unit portfolio &bull; 7–12 months</div>
+    <p style="margin: 12px 0;">Target areas: Jumeirah Park / The Meadows (villas), Dubai Marina (penthouses), Business Bay / JBR (multi-unit)</p>
+
+    <h3>Option A — Jumeirah Park 4BR Villa</h3>
+    <table class="data-table">
+      <thead><tr><th>Line Item</th><th style="text-align:right;">Amount (AED)</th></tr></thead>
+      <tbody>
+        <tr><td>Purchase Price</td><td class="amount">7,200,000</td></tr>
+        <tr><td>Acquisition Costs</td><td class="amount">432,000</td></tr>
+        <tr><td>Renovation (luxury — kitchen, 4 baths, pool, smart home)</td><td class="amount">1,350,000</td></tr>
+        <tr><td>Holding + Exit Costs</td><td class="amount">418,000</td></tr>
+        <tr class="total-row"><td>Total Investment</td><td class="amount">9,400,000</td></tr>
+        <tr><td>Sale Price</td><td class="amount">12,500,000</td></tr>
+        <tr class="profit-row"><td>Net Profit</td><td class="amount">3,100,000</td></tr>
+      </tbody>
+    </table>
+
+    <div class="split-box">
+      <div class="split-investor">
+        <div class="split-label gold">Investor Return (70%)</div>
+        <div class="split-amount gold">AED 2,170,000</div>
+        <div class="split-pct">on AED 9.4M invested</div>
+      </div>
+      <div class="split-operator">
+        <div class="split-label muted">Operator Return (30%)</div>
+        <div class="split-amount">AED 930,000</div>
+        <div class="split-pct">&nbsp;</div>
+      </div>
+    </div>
+
+    <div class="kpi-row">
+      <div class="kpi"><div class="value">~33%</div><div class="label">Per-Deal ROI</div></div>
+      <div class="kpi"><div class="value">33–57%</div><div class="label">Annualized*</div></div>
+      <div class="kpi"><div class="value">5–10%</div><div class="label">Rental Fallback Yield</div></div>
+    </div>
+
+    <h3>Option B — Multi-Unit Play (3× 2BR in JBR/Marina)</h3>
+    <table class="data-table">
+      <thead><tr><th>Line Item</th><th style="text-align:right;">Amount (AED)</th></tr></thead>
+      <tbody>
+        <tr><td>Purchase (3 units)</td><td class="amount">6,600,000</td></tr>
+        <tr><td>Renovation (3 units — mid transformation each)</td><td class="amount">825,000</td></tr>
+        <tr><td>Acquisition + Holding + Exit Costs</td><td class="amount">1,100,000</td></tr>
+        <tr class="total-row"><td>Total Investment</td><td class="amount">8,525,000</td></tr>
+        <tr><td>Sale (3 units)</td><td class="amount">12,000,000</td></tr>
+        <tr class="profit-row"><td>Net Profit</td><td class="amount">3,475,000</td></tr>
+      </tbody>
+    </table>
+
+    <div class="split-box">
+      <div class="split-investor">
+        <div class="split-label gold">Investor Return (70%)</div>
+        <div class="split-amount gold">AED 2,432,500</div>
+        <div class="split-pct">on AED 8.53M invested</div>
+      </div>
+      <div class="split-operator">
+        <div class="split-label muted">Operator Return (30%)</div>
+        <div class="split-amount">AED 1,042,500</div>
+        <div class="split-pct">&nbsp;</div>
+      </div>
+    </div>
+
+    <div class="kpi-row">
+      <div class="kpi"><div class="value">~41%</div><div class="label">Per-Deal ROI</div></div>
+      <div class="kpi"><div class="value">41–70%</div><div class="label">Annualized*</div></div>
+      <div class="kpi"><div class="value">Diversified</div><div class="label">3-Unit Risk Spread</div></div>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top:0;">Risk &amp; Mitigation</h3>
+      <ul>
+        <li>Risk level: Medium-High — concentrated single-asset exposure (Option A) or diversified (Option B)</li>
+        <li>Desert Build compressed margins save AED 250K–400K per project</li>
+        <li>Multiple exit strategies: sell, lease at AED 500K–800K/yr, short-term luxury rental</li>
+        <li>Legal: Enhanced Profit Share (single investor) or SPV with waterfall (multi-investor)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ==================== TIER 6A: 20M+ FLIP ==================== -->
+  <div class="section page-break">
+    <div class="section-num">10 — Tier 6</div>
+    <h2>AED 20M+ — Ultra-Luxury Flip</h2>
+    <div class="visa-badge">🏛 Golden Visa Eligible</div>
+    <div class="tier-meta">Buy-Upgrade-Flip &bull; Ultra-luxury villas &amp; penthouses &bull; 8–14 months</div>
+    <p style="margin: 12px 0;">Target areas: Palm Jumeirah (Garden Homes), Emirates Hills, Bulgari Residences area</p>
+
+    <h3>Sample Deal — Emirates Hills 5BR Villa</h3>
+    <table class="data-table">
+      <thead><tr><th>Line Item</th><th style="text-align:right;">Amount (AED)</th></tr></thead>
+      <tbody>
+        <tr><td>Purchase Price</td><td class="amount">15,000,000</td></tr>
+        <tr><td>Acquisition Costs</td><td class="amount">900,000</td></tr>
+        <tr><td>Renovation (ultra-luxury / bespoke)</td><td class="amount">3,250,000</td></tr>
+        <tr><td>Holding + Exit Costs</td><td class="amount">600,000</td></tr>
+        <tr class="total-row"><td>Total Investment</td><td class="amount">19,750,000</td></tr>
+        <tr><td>Sale Price</td><td class="amount">28,000,000</td></tr>
+        <tr class="profit-row"><td>Net Profit</td><td class="amount">8,250,000</td></tr>
+      </tbody>
+    </table>
+
+    <div class="split-box">
+      <div class="split-investor">
+        <div class="split-label gold">Investor Return (70%)</div>
+        <div class="split-amount gold">AED 5,775,000</div>
+        <div class="split-pct">on AED 19.75M invested</div>
+      </div>
+      <div class="split-operator">
+        <div class="split-label muted">Operator Return (30%)</div>
+        <div class="split-amount">AED 2,475,000</div>
+        <div class="split-pct">&nbsp;</div>
+      </div>
+    </div>
+
+    <div class="kpi-row">
+      <div class="kpi"><div class="value">~42%</div><div class="label">Per-Deal ROI</div></div>
+      <div class="kpi"><div class="value">35–63%</div><div class="label">Annualized*</div></div>
+      <div class="kpi"><div class="value">AED 0.8–1.5M/yr</div><div class="label">Rental Fallback</div></div>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top:0;">Risk &amp; Mitigation</h3>
+      <ul>
+        <li>Risk level: High — very thin buyer pool at UHNW level; longer sale cycles (3–6 months marketing)</li>
+        <li>Emirates Hills has zero new supply (gated, finite); Palm Garden Homes are irreplaceable assets</li>
+        <li>Rental fallback at AED 800K–1.5M/yr</li>
+        <li>Desert Build compressed margins on high-spec renovation</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ==================== TIER 6B: 20M+ DEVELOPMENT ==================== -->
+  <div class="section page-break">
+    <div class="section-num">11 — Tier 6</div>
+    <h2>AED 20M+ — Ground-Up Development</h2>
+    <div class="tier-meta">Development &bull; Custom villas or G+4 buildings &bull; 18–30 months</div>
+
+    <h3>Option A — Custom Villa (MBR City, 12,000 sqft BUA)</h3>
+    <table class="data-table">
+      <thead><tr><th>Line Item</th><th style="text-align:right;">Amount (AED)</th></tr></thead>
+      <tbody>
+        <tr><td>Land</td><td class="amount">10,000,000</td></tr>
+        <tr><td>Construction (Desert Build @ AED 700/sqft)</td><td class="amount">8,400,000</td></tr>
+        <tr><td>Soft Costs + Contingency</td><td class="amount">5,600,000</td></tr>
+        <tr class="total-row"><td>Total Investment</td><td class="amount">24,000,000</td></tr>
+        <tr><td>Sale Price</td><td class="amount">33,000,000</td></tr>
+        <tr class="profit-row"><td>Net Profit</td><td class="amount">9,000,000</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Option B — G+4 Building (JVC / Al Furjan, 40 units)</h3>
+    <table class="data-table">
+      <thead><tr><th>Line Item</th><th style="text-align:right;">Amount (AED)</th></tr></thead>
+      <tbody>
+        <tr><td>Land</td><td class="amount">10,000,000</td></tr>
+        <tr><td>Construction (Desert Build @ AED 550/sqft)</td><td class="amount">24,750,000</td></tr>
+        <tr><td>Soft Costs + Contingency</td><td class="amount">12,250,000</td></tr>
+        <tr class="total-row"><td>Total Investment</td><td class="amount">47,000,000</td></tr>
+        <tr><td>Revenue (40 units)</td><td class="amount">65,000,000</td></tr>
+        <tr class="profit-row"><td>Net Profit</td><td class="amount">18,000,000</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Option C — Dubai South (G+3/G+4 Pilot)</h3>
+    <div class="card highlight">
+      <ul>
+        <li><strong>Product:</strong> G+3 / G+4 residential buildings, 25–30 units per building</li>
+        <li><strong>Investment range:</strong> AED 15–25M pilot project</li>
+        <li><strong>Expected gross margins:</strong> 15–22%</li>
+        <li><strong>Key demand drivers:</strong></li>
+      </ul>
+      <div class="content-grid" style="margin-top: 12px;">
+        <div class="content-item">
+          <div class="count">AED 128B</div>
+          <div class="type">Al Maktoum Airport Expansion</div>
+          <div class="example">World's largest airport — driving massive workforce and residential demand</div>
+        </div>
+        <div class="content-item">
+          <div class="count">75K</div>
+          <div class="type">Expo City Residents Target</div>
+          <div class="example">Planned community creating sustained demand in the corridor</div>
+        </div>
+        <div class="content-item">
+          <div class="count">2029</div>
+          <div class="type">Metro Blue Line</div>
+          <div class="example">New metro connection will transform accessibility and property values</div>
+        </div>
+        <div class="content-item">
+          <div class="count">Early Mover</div>
+          <div class="type">Pricing Advantage</div>
+          <div class="example">Current land and construction costs significantly below mature communities</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top:0;">Development Legal Structure</h3>
+      <ul>
+        <li><strong>Profit split:</strong> SPV with waterfall distribution — return of capital first → 8–10% preferred return → profit split (70/30 up to 20% IRR, 60/40 above 20% IRR)</li>
+        <li><strong>Legal structure:</strong> SPV (Dubai LLC or ADGM) with shareholders agreement, capital call structure in tranches, independent auditor</li>
+        <li><strong>Risk level:</strong> High — capital locked 18–30 months; construction delays; market timing exposure</li>
+        <li><strong>Key mitigation:</strong> Desert Build compressed margins (15–20% savings); pre-sell 30–40% off-plan; RERA escrow protects all parties</li>
+      </ul>
+    </div>
+
+    <div class="kpi-row">
+      <div class="kpi"><div class="value">30–40%</div><div class="label">ROI Over Full Cycle</div></div>
+      <div class="kpi"><div class="value">15–25%</div><div class="label">Annualized*</div></div>
+      <div class="kpi"><div class="value">5–7%</div><div class="label">Rental Fallback Yield</div></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ==================== RISK & SAFETY ==================== -->
+  <div class="section page-break">
+    <div class="section-num">12 — Risk Management</div>
+    <h2>Risk &amp; Safety Nets</h2>
+
+    <div class="content-grid">
+      <div class="content-item">
+        <div class="type" style="color: var(--gold);">Title Protection</div>
+        <div class="example" style="font-style: normal; font-size: 14px; margin-top: 8px;">Property title deed in investor's name on all flip deals. Your asset, your security.</div>
+      </div>
+      <div class="content-item">
+        <div class="type" style="color: var(--gold);">Rental Fallback</div>
+        <div class="example" style="font-style: normal; font-size: 14px; margin-top: 8px;">If exit takes longer, pivot to rental income at 5–15% gross yield depending on tier and location.</div>
+      </div>
+      <div class="content-item">
+        <div class="type" style="color: var(--gold);">Fixed-Price Contracts</div>
+        <div class="example" style="font-style: normal; font-size: 14px; margin-top: 8px;">Desert Build provides fixed-price renovation contracts with milestone payments — no cost overrun surprises.</div>
+      </div>
+      <div class="content-item">
+        <div class="type" style="color: var(--gold);">Escrow Protection</div>
+        <div class="example" style="font-style: normal; font-size: 14px; margin-top: 8px;">Development projects use RERA escrow accounts. Flip deals use milestone-based fund release at higher tiers.</div>
+      </div>
+      <div class="content-item">
+        <div class="type" style="color: var(--gold);">Compressed Margins</div>
+        <div class="example" style="font-style: normal; font-size: 14px; margin-top: 8px;">Desert Build's volume relationships save 15–20% on construction vs. third-party contractors.</div>
+      </div>
+      <div class="content-item">
+        <div class="type" style="color: var(--gold);">Market Intelligence</div>
+        <div class="example" style="font-style: normal; font-size: 14px; margin-top: 8px;">AI-powered deal scoring and comparable analysis ensures we don't overpay. Data before emotion.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ==================== AT A GLANCE ==================== -->
+  <div class="section page-break">
+    <div class="section-num">13 — At a Glance</div>
+    <h2>All Tiers Compared</h2>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Tier</th>
+          <th style="text-align:right;">Total Profit</th>
+          <th style="text-align:right;">Investor (70%)</th>
+          <th>Timeline</th>
+          <th>Annualized*</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>AED 500K</strong></td>
+          <td class="amount">109,000</td>
+          <td class="amount" style="color: var(--gold);">76,300</td>
+          <td>4–6 months</td>
+          <td>53–80%</td>
+        </tr>
+        <tr>
+          <td><strong>AED 1M</strong></td>
+          <td class="amount">127,000</td>
+          <td class="amount" style="color: var(--gold);">88,900</td>
+          <td>4–6 months</td>
+          <td>28–41%</td>
+        </tr>
+        <tr>
+          <td><strong>AED 3M</strong> <span style="font-size:11px; color: var(--gold);">🏛 GV</span></td>
+          <td class="amount">380,000</td>
+          <td class="amount" style="color: var(--gold);">266,000</td>
+          <td>5–8 months</td>
+          <td>21–34%</td>
+        </tr>
+        <tr>
+          <td><strong>AED 5M</strong> <span style="font-size:11px; color: var(--gold);">🏛 GV</span></td>
+          <td class="amount">750,000</td>
+          <td class="amount" style="color: var(--gold);">525,000</td>
+          <td>6–9 months</td>
+          <td>21–32%</td>
+        </tr>
+        <tr>
+          <td><strong>AED 10M</strong> (Villa) <span style="font-size:11px; color: var(--gold);">🏛 GV</span></td>
+          <td class="amount">3,100,000</td>
+          <td class="amount" style="color: var(--gold);">2,170,000</td>
+          <td>7–12 months</td>
+          <td>33–57%</td>
+        </tr>
+        <tr>
+          <td><strong>AED 10M</strong> (Multi-Unit)</td>
+          <td class="amount">3,475,000</td>
+          <td class="amount" style="color: var(--gold);">2,432,500</td>
+          <td>7–12 months</td>
+          <td>41–70%</td>
+        </tr>
+        <tr>
+          <td><strong>AED 20M+</strong> (Flip)</td>
+          <td class="amount">8,250,000</td>
+          <td class="amount" style="color: var(--gold);">5,775,000</td>
+          <td>8–14 months</td>
+          <td>35–63%</td>
+        </tr>
+        <tr>
+          <td><strong>AED 20M+</strong> (Dev)</td>
+          <td class="amount" style="color: var(--text-muted);">SPV Waterfall</td>
+          <td class="amount" style="color: var(--text-muted);">SPV Structure</td>
+          <td>18–30 months</td>
+          <td>15–25%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="font-size: 12px; color: var(--text-muted); margin-top: 8px;">GV = Golden Visa eligible (AED 2M+ property, 10-year UAE residency for buyer + family)</p>
+
+    <div class="disclaimer" style="margin-top: 20px;">
+      <strong>* Annualized Returns Disclaimer:</strong> Annualized figures assume immediate reinvestment into the next deal with zero downtime — which is theoretical. The real commitment is the per-deal profit and timeframe. Actual annual returns depend on deal flow velocity, sourcing speed, and market conditions.
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ==================== NEXT STEPS ==================== -->
+  <div class="section page-break">
+    <div class="section-num">14 — Next Steps</div>
+    <h2>Let's Build Together</h2>
+
+    <div class="workflow">
+      <div class="workflow-step">
+        <div class="step-num">Step 1</div>
+        <div class="step-title">Select Your Tier</div>
+        <div class="step-desc">Choose the investment level that matches your capital and risk appetite. We'll tailor the strategy to your goals.</div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">Step 2</div>
+        <div class="step-title">Due Diligence Meeting</div>
+        <div class="step-desc">Sit down with management to review the model, ask questions, and understand the process end-to-end.</div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">Step 3</div>
+        <div class="step-title">Deal Presentation</div>
+        <div class="step-desc">We source and present a specific deal for your approval — with full financials, comparables, and risk analysis.</div>
+      </div>
+      <div class="workflow-step">
+        <div class="step-num">Step 4</div>
+        <div class="step-title">Execute &amp; Earn</div>
+        <div class="step-desc">Once approved, we execute. You hold the title. We manage the project. Profits are split transparently.</div>
+      </div>
+    </div>
+
+    <div class="card highlight" style="text-align: center; padding: 40px;">
+      <div style="font-family: 'Playfair Display', serif; font-size: 28px; color: var(--gold); margin-bottom: 12px;">Golden Desert Investments</div>
+      <div style="font-size: 16px; color: var(--text-muted); margin-bottom: 24px;">Building Wealth Through Dubai Real Estate</div>
+      <div style="font-size: 14px; color: var(--text-muted);">
+        Haysal Real Estate (Brokerage) &bull; Desert Build (Construction Management)
+      </div>
+      <div style="font-size: 14px; color: var(--text-muted); margin-top: 8px;">
+        Dubai, UAE &bull; Q1 2026
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="brand">Golden Desert Investments</div>
+    <p>This document is for qualified investors only. All figures are estimates based on Q1 2026 market data.<br>Actual results depend on deal sourcing, execution quality, and market conditions.</p>
+    <p style="margin-top: 8px;">Confidential — Not for distribution without prior consent.</p>
+  </div>
+
+</div>
+</body>
+</html>
